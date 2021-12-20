@@ -16,7 +16,7 @@ try:
         "Operating System :: MacOS",
         "Operating System :: Unix",
         "Operating System :: Microsoft :: Windows",
-        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.6",
         "Topic :: Scientific/Engineering :: Bio-Informatics"
     ]
 except ImportError:
@@ -34,11 +34,11 @@ except ImportError:
         "Topic :: Scientific/Engineering :: Bio-Informatics"
     ]
 
-VERSION = "1.1.8"
-AUTHOR = "Ali Rahnavard"
-AUTHOR_EMAIL = "gholamali.rahnavard@gmail.com"
-MAINTAINER = "Ali Rahnavard"
-MAINTAINER_EMAIL = "gholamali.rahnavard@gmail.com"
+VERSION = "1.0"
+AUTHOR = "Ali Rahnavard, Xinyang Zhang"
+AUTHOR_EMAIL = "gholamali.rahnavard@gmail.com, kathyzhang415@gmail.com"
+MAINTAINER = "Ali Rahnavard, Xinyang Zhang"
+MAINTAINER_EMAIL = "gholamali.rahnavard@gmail.com, kathyzhang415@gmail.com"
 
 # try to download the bitbucket counter file to count downloads
 # this has been added since PyPI has turned off the download stats
