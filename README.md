@@ -1,35 +1,26 @@
-# omeClust: multi-resolution clustering of omics data #
+# deepStrain: #
 
-**omeClust** is a clustering method that detects
-clusters of features using omics data and scores metadata 
-(resolution score) based on their influences in clustering.
-The similarity of features within each cluster can be 
-different (different resolution). Resolution of similarity score takes to 
-account not only similarity between measurements and 
-also the structure in a hierarchical structure of data and 
-number of features which group together.
+**deepStrain** is -indroduction
 
 ---
 
 **Citation:**
-
-Ali Rahnavard, Suvo Chatterjee, Bahar Sayoldin, Keith A. Crandall, Fasil Tekola-Ayele, and Himel Mallick (2021). **[Omics community detection using multi-resolution clustering](https://doi.org/10.1093/bioinformatics/btab317)**. *Bioinformatics*, btab317, https://github.com/omicsEye/omeClust/.
 
 ----
 
 * Please see the [Workshop](https://github.com/omicsEye/omeClust/wiki/Workshop) for a one hour workshop.
 
 ----
-# omeClust user manual
+# deepStrain user manual
 
 ## Contents ##
 * [Features](#features)
-* [omeClust](#omeClust)
-    * [omeClust approach](#omeClust-approach)
+* [deepStrain](#deepStrain)
+    * [deepStrain approach](#deepStrain-approach)
     * [Requirements](#requirements)
     * [Installation](#installation)
-* [Getting Started with omeClust](#getting-started-with-omeClust)
-    * [Test omeClust](#test-omeClust)
+* [Getting Started with deepStrain](#getting-started-with-deepStrain)
+    * [Test deepStrain](#test-omeClust)
     * [Options](#options) 
     * [Input](#input)
     * [Output](#output)  
@@ -48,7 +39,7 @@ Ali Rahnavard, Suvo Chatterjee, Bahar Sayoldin, Keith A. Crandall, Fasil Tekola-
 * [Support](#Support)
 ------------------------------------------------------------------------------------------------------------------------------
 # Features #
-1. Generality: omeClust uses distance matrix as input, to allow users decide about appropriate distance metric for 
+1. Generality: deepStrain uses distance matrix as input, to allow users decide about appropriate distance metric for 
 their data.
 
 2. A simple user interface (single command driven flow)
@@ -59,9 +50,10 @@ their data.
     * Ordination plots (PCoA, PCA, MDS, and t-SNE), heatmap,and network plot are provides for ease of interpretation
     * Discretized metadata that has been used for enrichment score calculation 
     
-# omeClust #
-## omeClust approach ##
-![omeClust Workflow overview](img/fig1_overview.png)
+# deepStrain #
+## deepStrain approach ##
+
+
 ## REQUIREMENTS ##
 * [Matplotlib](http://matplotlib.org/)
 * [Python 3.*](https://www.python.org/download/releases/)
@@ -91,9 +83,9 @@ $ pip3 install omeClust
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-# Getting Started with omeClust #
+# Getting Started with deepStrain #
 
-## Test omeClust ##
+## Test deepStrain ##
 
 To test if omeClust is installed correctly, you may run the following command in the terminal:
 
@@ -182,11 +174,6 @@ influential metadata. (Metadata2 is a name of a column in metadata if if it is p
 Here we show the PCoA, PCoA 3D, network, and t-SNE plots from _omeClust_ generated plots. 
 
 
-<img src="img/Ground truth_PCoA_plot.png" height="35%" width="35%"> <img src="img/Ground truth_PCoA_3D_plot.png" height="35%" width="35%">
-
-<img src="img/network_plot.png" height="35%" width="35%"> <img src="img/Ground truth_t-SNE_plot.png" height="35%" width="35%">
-
-
 Below is an example output `clusters.txt` file, we only showing teh five members of each cluster for purpose of saving space:
 ```
 Cluster  |  Members                   |  n   |  resolution_score  |  branch_condensed_distance  |  Ground truth  |  Gender       |  Age
@@ -224,7 +211,7 @@ calculate enrichment score.
 Produces a set of ordination plots for features colored by computational clusters and shaped by metadata.
 
 ```
-$ omeClustviz -h
+$ deepStrain -h
 usage: omeClustviz [-h] [--metadata METADATA] [--shapeby SHAPEBY] -o OUTPUT [--size-to-plot SIZE_TO_PLOT] [--fig-size FIG_SIZE FIG_SIZE] [--point-size POINT_SIZE] [--show] adist clusters
 
 omeClust visualization script.
@@ -255,7 +242,7 @@ optional arguments:
 ```
 
 
-## omeClust synthetic paired datasets generator ##
+## deepStrain synthetic paired datasets generator ##
 
 ```buildoutcfg=
 $ python3
@@ -298,7 +285,7 @@ the datasets and spiked relationship within and between datasets:
 
 ## Tutorials for distance calculation ##
 
-_omeClust_ is a genric tools and users can calculate a distance matrix using any appropriate method for their omics data 
+_deepStrain_ is a genric tools and users can calculate a distance matrix using any appropriate method for their omics data 
 and provide it as the input to _omeClust_. Here we provide methods for several **omics** applications. 
 
 ### Distance between sequencing alignments ###
@@ -369,15 +356,11 @@ $ omeClust -i HMP_disatnce.txt --metadata my_HMP_metadata.txt -o HMP_omeClust
 # Real world example #
 
 ## Microbial species communities ##
-<img src="img/Body area_t-SNE_plot.png" height="100%" width="100%"> <img src="img/Body area_PCoA_3D_plot.png" height="100%" width="100%">
 
 
 ## Microbial strains ##
-<img src="img/Body area_t-SNE_plot_H_parainfluenzae.png" height="100%" width="100%">
-
 
 ## Cell line gene expressions ##
-<img src="img/Tissue_t-SNE_plot.png" height="100%" width="100%">
 
 
 ### Support ###
