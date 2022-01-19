@@ -33,9 +33,6 @@
     * [Microbial species communities](#microbial-species-communities)
     * [Microbial strains](#microbial-strains)
     * [Cell line gene expressions](#cell-line-gene-expressions)
-* [Tools](#tools)
-    * [omeClust synthetic paired datasets generator](#omeClust-synthetic-paired-datasets-generator)
-    * [omeClust Python API](#omeClust-python-api)
 * [Support](#Support)
 ------------------------------------------------------------------------------------------------------------------------------
 # Features #
@@ -65,7 +62,7 @@ their data.
 Linux based and Mac OS:
 * First open a terminal 
 ```
-$ sudo pip3 install omeClust
+$ sudo pip3 install deepStrain
 ```
 If you use `sudo` then you need provide admin password and teh software will be installed for all users.
 
@@ -76,10 +73,10 @@ Windows OS:
 then run the following command 
 
 ```
-$ pip3 install omeClust
+$ pip3 install deepStrain
 ```
 
-* You can replace `pip3` by `pip` if you have only Python 3 installed on your computer. `pip3` specifies to install `omClust` for Python 3. 
+* You can replace `pip3` by `pip` if you have only Python 3 installed on your computer. `pip3` specifies to install `deepStrain` for Python 3. 
 
 ------------------------------------------------------------------------------------------------------------------------------
 
@@ -87,7 +84,7 @@ $ pip3 install omeClust
 
 ## Test deepStrain ##
 
-To test if omeClust is installed correctly, you may run the following command in the terminal:
+To test if deepStrain is installed correctly, you may run the following command in the terminal:
 
 ```
 #!cmd
