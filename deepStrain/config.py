@@ -1,7 +1,7 @@
 #default values for user options
 version = '1.0.0'
 input_table = ''
-output_folder = ''
+output_folder = '/Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test'
 basename = 'deepStrain'
 log_level = 'DEBUG'
 verbose = 'DEBUG'

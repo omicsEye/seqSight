@@ -4,8 +4,7 @@ import re
 import logging
 import shutil
 
-from deepStrain import config
-from deepStrain.utilities import utilities
+import config
 
 # def download_refDB():
     # CMD
@@ -15,15 +14,7 @@ def make_alignmnet_input():
 
 def get_args():
     b = 1
-
 def main():
-    args = get_args()
-
-    # Steps1: Make a directory or outputs
-    utilities.make_directory(config.output_folder)
-
-
-
-
+    c = 1
 if __name__== '__main__':
-
+    main()
