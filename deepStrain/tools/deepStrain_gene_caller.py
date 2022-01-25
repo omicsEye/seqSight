@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from utils import utilities
+import utilities
 import config
 
 
@@ -21,7 +21,7 @@ def main():
 
     config.temp_dir = config.output_folder + '/prodigal_output/'
     utilities.make_directory(config.temp_dir)
-    new_contig_file = "/Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/bowtie2_output/demo.fna"
+    new_contig_file = "/Test/bowtie2_output/demo.fna"
     genes_file_gff, genes_file_fna, genes_file_faa = utilities.genecall(new_contig_file)
 
     # make bowtie2 output
