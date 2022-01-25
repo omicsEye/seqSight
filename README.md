@@ -56,6 +56,10 @@ their data.
 * [Python 3.*](https://www.python.org/download/releases/)
 * [Numpy 1.9.*](http://www.numpy.org/)
 * [Pandas (version >= 0.18.1)](http://pandas.pydata.org/getpandas.html)
+* [Prodigal](https://github.com/hyattpd/Prodigal)
+* [bowtie2 v2.4.4](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
+* [biopython 1.79](https://biopython.org/)
+* [diamond 2.0.14](https://github.com/bbuchfink/diamond)
 
 ## INSTALLATION ##
 
