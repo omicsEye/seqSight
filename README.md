@@ -1,6 +1,6 @@
 # deepStrain: #
 
-**deepStrain** is -indroduction
+**deepStrain** is a strain-level metagenomics analysis tool; it is designed to provided maximum utility to the user by incorporating a number of analysis modules for the quantification of not only bacterial strains but also gene families and biosynthetic gene clusters. deepStrain also incorporates quality control modules and visualization tools.
 
 ---
 
