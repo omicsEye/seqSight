@@ -7,10 +7,6 @@
 **Citation:**
 
 ----
-
-* Please see the [Workshop](https://github.com/omicsEye/omeClust/wiki/Workshop) for a one hour workshop.
-
-----
 # deepStrain user manual
 
 ## Contents ##
@@ -93,18 +89,18 @@ To test if deepStrain is installed correctly, you may run the following command 
 ```
 #!cmd
 
-omeClust -h
+deepStrain -h
 
 ```
 
-Which yields omeClust command line options.
+Which yields deepStrain command line options.
 
 
 ## Options ##
 
 ```
-$ omeClust -h
-usage: omeClust [-h] [--version] [-i INPUT] -o OUTPUT [-m SIMILARITY] [--metadata METADATA] [-n ESTIMATED_NUMBER_OF_CLUSTERS] [--size-to-plot SIZE_TO_PLOT]
+$ deepStrain -h
+usage: deepStrain [-h] [--version] [-i INPUT] -o OUTPUT [-m SIMILARITY] [--metadata METADATA] [-n ESTIMATED_NUMBER_OF_CLUSTERS] [--size-to-plot SIZE_TO_PLOT]
                 [-c {single,average,complete,weighted,centroid,median,ward}] [--plot] [--resolution {high,medium,low}] [--enrichment {nmi,freq}] [-v]
 
 Multi-resolution clustering using hierarchical clustering and Silhouette score.
@@ -140,7 +136,7 @@ optional arguments:
 
 The two required input parameters are:
 
-1. ``-i or --input:`` a distance matrix.
+1. ``-i or --input:`` reads.
 Th input is a  symmetric distance matrix in a format of a tab-delimited text file of `n * n` where `n` is number of features 
 (e.g. metabolites, stains, microbial species, individuals).
 2. ``--output-folder``: a folder containing all the output files
@@ -215,7 +211,7 @@ Produces a set of ordination plots for features colored by computational cluster
 $ deepStrain -h
 usage: omeClustviz [-h] [--metadata METADATA] [--shapeby SHAPEBY] -o OUTPUT [--size-to-plot SIZE_TO_PLOT] [--fig-size FIG_SIZE FIG_SIZE] [--point-size POINT_SIZE] [--show] adist clusters
 
-omeClust visualization script.
+deepStrain visualization script.
 
 positional arguments:
   adist                 the input file D*N, Rows: D features and columns: N samples OR 
@@ -247,8 +243,8 @@ optional arguments:
 
 ```buildoutcfg=
 $ python3
-from  omeClust import cluster_generator
-from  omeClust import dataprocess
+from  deepStrain import cluster_generator
+from  deepStrain import dataprocess
 nX = 100
 nY = 100 
 nSamples = 50
@@ -364,6 +360,3 @@ $ omeClust -i HMP_disatnce.txt --metadata my_HMP_metadata.txt -o HMP_omeClust
 ## Cell line gene expressions ##
 
 
-### Support ###
-
-* Please submit your questions or issues with the software at [Issues tracker](https://github.com/omicsEye/omeClust/issues).
