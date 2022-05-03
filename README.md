@@ -26,7 +26,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * [Input](#input)
     * [Output](#output)  
 * [deepStrain piplines](#deepStrain-piplines)
-   * [Taxonomic prfoiling](#taxonomic-prfoiling)
+   * [Taxonomic profiling](#taxonomic-profiling)
    * [Biosynthetic gene clusters profiling](Biosynthetic-gene-clusters-profiling)
    * [Gene families profiling](#Gene-families-profiling)
    * [Strain profiling](#Strain-profiling)
@@ -143,13 +143,13 @@ usage: deepStrain [-h]
 
 ```
 # deepStrain piplines # 
-## Taxonomic prfoiling ##
+## Taxonomic profiling ##
 1. Bayesian Reassignment
 
 
 ![tax1](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile1.png)
 
-2. Taxonomic prfoiling
+2. Taxonomic profiling
 
 
 ![tax2](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile2.png)
