@@ -20,7 +20,7 @@
     * [Input](#input)
     * [Output](#output)  
 * [Real world examples](#real-world-examples)
-    * [Visulization](#visulization-demo)
+    * [Visualization](#visulization-demo)
 * [Support](#Support)
 ------------------------------------------------------------------------------------------------------------------------------
 # Features #
@@ -54,6 +54,7 @@
 * [diamond 2.0.14](https://github.com/bbuchfink/diamond)
 
 ## INSTALLATION ##
+ - not finished yet
 
 Linux based and Mac OS:
 * First open a terminal 
@@ -96,16 +97,12 @@ Which yields deepStrain command line options.
 ```
 $ deepStrain -h
 usage: deepStrain [-h] [--version] [-i INPUT] -o OUTPUT 
-                [-c {single,average,complete,weighted,centroid,median,ward}] [--plot] [--resolution {high,medium,low}] [--enrichment {nmi,freq}] [-v]
-
-Multi-resolution clustering using hierarchical clustering and Silhouette score.
-
+ 
 optional arguments:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
   -i INPUT, --input INPUT
-                        the input file D*N, Rows: D features and columns: N samples OR 
-                        a distance matrix file D*D (rows and columns should be the same and in the same order) 
+                        the input file are reads with FASTA/FASTQ format
                          
   -o OUTPUT, --output OUTPUT
                         the output directory
@@ -118,8 +115,6 @@ optional arguments:
 The two required input parameters are:
 
 1. ``-i or --input:`` reads.
-Th input is a  symmetric distance matrix in a format of a tab-delimited text file of `n * n` where `n` is number of features 
-(e.g. metabolites, stains, microbial species, individuals).
 2. ``--output-folder``: a folder containing all the output files
 
 A list of all options are provided in #options section. 
@@ -127,8 +122,7 @@ A list of all options are provided in #options section.
 ## Output ##
 ```
 $ deepStrain -h
-usage: deepStrain [-h] [--metadata METADATA] [--shapeby SHAPEBY] -o OUTPUT [--size-to-plot SIZE_TO_PLOT] [--fig-size FIG_SIZE FIG_SIZE] [--point-size POINT_SIZE] [--show] adist clusters
-
+usage: deepStrain [-h] 
 
 ```
 
