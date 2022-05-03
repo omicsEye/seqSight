@@ -4,7 +4,13 @@
 
 ---
 
-**Citation:**
+# Citation: #
+ Xinyang Zhang, Tyson Dawson, Keith A. Crandall, Ali Rahnavard (2022+), **deepStrain: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data** https://github.com/omicsEye/deepStrain
+
+# Attention # 
+----
+
+Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common questions before open issue thread there.
 
 ----
 # deepStrain user manual
@@ -14,11 +20,19 @@
 * [deepStrain](#deepStrain)
     * [Requirements](#requirements)
     * [Installation](#installation)
-* [Getting Started with deepStrain](#getting-started-with-deepStrain)
+* [Getting started with deepStrain](#getting-started-with-deepStrain)
     * [Test deepStrain](#test-deepStrain)
     * [Options](#options) 
     * [Input](#input)
     * [Output](#output)  
+* [deepStrain piplines](#deepStrain piplines)
+   * [Taxnomic prfoiling](#Taxnomics-prfoiling)
+   * [Biosynthetic gene clusters profiling](Biosynthetic-gene-clusters-profiling)
+   * [Gene families profiling](#Gene-families-profiling)
+   * [Strain profiling](#Strain-profiling)
+* [Utilities](#Utilities)
+   * [Joint profiles](#joint-profiles)
+   * [QC Visualization](#qc-visulization-demo) 
 * [Real world examples](#real-world-examples)
     * [Visualization](#visulization-demo)
 * [Support](#Support)
