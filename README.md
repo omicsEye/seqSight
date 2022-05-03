@@ -5,7 +5,7 @@
 ---
 
 # Citation: #
- Xinyang Zhang, Tyson Dawson, Keith A. Crandall, Ali Rahnavard (2022+), **deepStrain: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data** https://github.com/omicsEye/deepStrain
+ Xinyang Zhang, Tyson Dawson, Keith A. Crandall, Ali Rahnavard (2022+), **deepStrain: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data**, https://github.com/omicsEye/deepStrain
 
 # Attention # 
 ----
