@@ -26,7 +26,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * [Input](#input)
     * [Output](#output)  
 * [deepStrain piplines](#deepStrain-piplines)
-   * [Taxnomic prfoiling](#Taxnomics-prfoiling)
+   * [Taxonomic prfoiling](#taxonomic-prfoiling)
    * [Biosynthetic gene clusters profiling](Biosynthetic-gene-clusters-profiling)
    * [Gene families profiling](#Gene-families-profiling)
    * [Strain profiling](#Strain-profiling)
@@ -54,6 +54,9 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * Identification of key species
     * Inclusion of wider diversity of strains for key species
     * Cladogram generation w/ annotations
+
+
+![overall-fig](https://github.com/omicsEye/deepStrain/blob/main/img/fig1_general_pipeline.png)
     
 # deepStrain #
 
@@ -139,6 +142,23 @@ $ deepStrain -h
 usage: deepStrain [-h] 
 
 ```
+# deepStrain piplines # 
+## Taxonomic prfoiling ##
+1. Bayesian Reassignment
+
+
+![tax1](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile1.png)
+
+2. Taxonomic prfoiling
+
+
+![tax2](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile2.png)
+
+
+3. Visulization
+
+
+![tax3](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile3.png)
 
 # Real world example #
 ## Visulization Demo ##
