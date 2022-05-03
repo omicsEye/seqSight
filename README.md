@@ -155,7 +155,7 @@ usage: deepStrain [-h]
 ![tax2](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile2.png)
 
 
-3. Visulization
+3. Visualization
 
 
 ![tax3](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile3.png)
