@@ -25,7 +25,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * [Options](#options) 
     * [Input](#input)
     * [Output](#output)  
-* [deepStrain piplines](#deepStrain piplines)
+* [deepStrain piplines](#deepStrain-piplines)
    * [Taxnomic prfoiling](#Taxnomics-prfoiling)
    * [Biosynthetic gene clusters profiling](Biosynthetic-gene-clusters-profiling)
    * [Gene families profiling](#Gene-families-profiling)
