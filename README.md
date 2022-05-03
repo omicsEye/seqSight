@@ -21,22 +21,26 @@
     * [Input](#input)
     * [Output](#output)  
 * [Real world examples](#real-world-examples)
-    * [Microbial species communities](#microbial-species-communities)
-    * [Microbial strains](#microbial-strains)
-    * [Cell line gene expressions](#cell-line-gene-expressions)
+    * [visualization](#microbial-species-communities)
 * [Support](#Support)
 ------------------------------------------------------------------------------------------------------------------------------
 # Features #
-1. Generality: deepStrain uses distance matrix as input, to allow users decide about appropriate distance metric for 
-their data.
+1. Generality: deepStrain uses sequence reads as input with filtering and QC.
 
-2. A simple user interface (single command driven flow)
-    * The user only needs to provide a distance matrix file and a metadata file (optional)
+2. Mapping database
+    * Taxonomic Reference Genomes
+    * Gene Families
+    * Biosynthesis gene clusters
 
-3. A complete report including main outputs:
-    * A text file of clusters and related information is provided as output in a tab-delimited file, `clusters.txt`
-    * Ordination plots (PCoA, PCA, MDS, and t-SNE), heatmap,and network plot are provides for ease of interpretation
-    * Discretized metadata that has been used for enrichment score calculation 
+3. Downstream Analysis:
+    * Downstream Analysis
+    * Gene Family Pathway Analysis
+    * Sequence alignment & Key mutation ID
+
+4. High Resolution Phylogenomics:
+    * Identification of key species
+    * Inclusion of wider diversity of strains for key species
+    * Cladogram generation w/ annotations
     
 # deepStrain #
 ## deepStrain approach ##
@@ -94,7 +98,7 @@ Which yields deepStrain command line options.
 
 ```
 $ deepStrain -h
-usage: deepStrain [-h] [--version] [-i INPUT] -o OUTPUT [-m SIMILARITY] [--metadata METADATA] [-n ESTIMATED_NUMBER_OF_CLUSTERS] [--size-to-plot SIZE_TO_PLOT]
+usage: deepStrain [-h] [--version] [-i INPUT] -o OUTPUT 
                 [-c {single,average,complete,weighted,centroid,median,ward}] [--plot] [--resolution {high,medium,low}] [--enrichment {nmi,freq}] [-v]
 
 Multi-resolution clustering using hierarchical clustering and Silhouette score.
@@ -108,20 +112,6 @@ optional arguments:
                          
   -o OUTPUT, --output OUTPUT
                         the output directory
-  -m SIMILARITY, --similarity SIMILARITY
-                        similarity measurement {default spearman, options: spearman, nmi, ami, dmic, mic, pearson, dcor}
-  --metadata METADATA   Rows are features and each column is a metadata
-  -n ESTIMATED_NUMBER_OF_CLUSTERS, --estimated_number_of_clusters ESTIMATED_NUMBER_OF_CLUSTERS
-                        estimated number of clusters
-  --size-to-plot SIZE_TO_PLOT
-                        Minimum size of cluster to be plotted
-  -c {single,average,complete,weighted,centroid,median,ward}, --linkage_method {single,average,complete,weighted,centroid,median,ward}
-                        linkage clustering method method {default = complete, options average, complete
-  --plot                dendrogram plus heatmap
-  --resolution {high,medium,low}
-                        Resolution c .         Low resolution is good when clusters are well separated clusters.
-  --enrichment {nmi,freq}
-                        enrichment method.
   -v, --verbose         additional output is printed
 ```
 
@@ -135,49 +125,22 @@ Th input is a  symmetric distance matrix in a format of a tab-delimited text fil
 (e.g. metabolites, stains, microbial species, individuals).
 2. ``--output-folder``: a folder containing all the output files
 
-Also, user can specify a metadata input to find enrichment score for each metadata 
-* ``--metadata``: a tab-delimited text file with `n` rows for features names and `m` columns for metadata
-
 A list of all options are provided in #options section. 
 
 ## Output ##
-
-
-
 ```
 $ deepStrain -h
-usage: omeClustviz [-h] [--metadata METADATA] [--shapeby SHAPEBY] -o OUTPUT [--size-to-plot SIZE_TO_PLOT] [--fig-size FIG_SIZE FIG_SIZE] [--point-size POINT_SIZE] [--show] adist clusters
+usage: deepStrain [-h] [--metadata METADATA] [--shapeby SHAPEBY] -o OUTPUT [--size-to-plot SIZE_TO_PLOT] [--fig-size FIG_SIZE FIG_SIZE] [--point-size POINT_SIZE] [--show] adist clusters
 
-deepStrain visualization script.
-
-positional arguments:
-  adist                 the input file D*N, Rows: D features and columns: N samples OR 
-                        a distance matrix file D*D (rows and columns should be the same and in the same order) 
-                         
-  clusters              the input file D*N, Rows: D features and columns: N samples OR 
-                        a distance matrix file D*D (rows and columns should be the same and in the same order) 
-                         
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --metadata METADATA   metadata
-  --shapeby SHAPEBY     the input file D*N, Rows: D features and columns: N samples OR 
-                        a distance matrix file D*D (rows and columns should be the same and in the same order) 
-                         
-  -o OUTPUT, --output OUTPUT
-                        the output directory
-  --size-to-plot SIZE_TO_PLOT
-                        Minimum size of cluster to be plotted
-  --fig-size FIG_SIZE FIG_SIZE
-                        width and height of plots
-  --point-size POINT_SIZE
-                        width and height of plots
-  --show                show ordination plot before save
 
 ```
-### Distance using genomics variation ###
 
 # Real world example #
+## Visulization Demo ##
+1. Go to the deepStrain/Notebook, download FiveTargetNum.tsv, FiveTargetReads.tsv and stackedplot.ipynb.
+2. FiveTargetNum.tsv and FiveTargetReads.tsv are two output files that generated from deepStrain.
+3. The stacked bar plot show the composition distribution and their corresponding reads.
+4. The final look could be liked the following:
 
 
 
