@@ -16,15 +16,10 @@
     * [Requirements](#requirements)
     * [Installation](#installation)
 * [Getting Started with deepStrain](#getting-started-with-deepStrain)
-    * [Test deepStrain](#test-omeClust)
+    * [Test deepStrain](#test-deepStrain)
     * [Options](#options) 
     * [Input](#input)
     * [Output](#output)  
-* [Guides to omeClustviz for visualization](#guides-to-omeClustviz-for-visualiazation)
-* [Tutorials for distance calculation](#tutorials-for-distance-calculation)
-    * [Distance between sequencing alignments](#distance-between-sequencing-alignments)
-    * [Distance using correlation](#distance-using-correlation)
-    * [Distance using genomics variation](#distance-using-genomics-variation)
 * [Real world examples](#real-world-examples)
     * [Microbial species communities](#microbial-species-communities)
     * [Microbial strains](#microbial-strains)
@@ -92,7 +87,6 @@ To test if deepStrain is installed correctly, you may run the following command 
 deepStrain -h
 
 ```
-
 Which yields deepStrain command line options.
 
 
@@ -148,64 +142,7 @@ A list of all options are provided in #options section.
 
 ## Output ##
 
-the main output is the `clusters.txt` a a tab-delimited text file that each row is a cluster with following columns.
-* cluster: includes cluster/community IDs started with C.	
-* members: members of a cluster.	
-* resolution_score: an score defined for each cluster calculated as harmonic mean of number of cluster and condensed 
-distance of cluster branch in hierarchy. We used 0.05 as threshold to call a cluster as a major cluster. 	
-* Meta1: if metadata is provides this is the first metadata that is enriched in cluster and
-is reported as most influential metadata on clusters structure. 	
-* Meta2: the second most 
-influential metadata. (Metadata2 is a name of a column in metadata if if it is provided).
 
-### Demo run using synthetic data ###
-
-1. Download the input:
-[Distance matrix](data/synthetic/dist_4_0.001_4_200.txt) and
-[metadata](/data/synthetic/truth_4_0.001_4_200.txt))
-
-2. Run omeClust in command line with input
-``$ omeClust -i dist_4_0.001_4_200.txt --metadata truth_4_0.001_4_200.txt -o omeclust_demo --plot``
-
-3. Check your output folder
-Here we show the PCoA, PCoA 3D, network, and t-SNE plots from _omeClust_ generated plots. 
-
-
-Below is an example output `clusters.txt` file, we only showing teh five members of each cluster for purpose of saving space:
-```
-Cluster  |  Members                   |  n   |  resolution_score  |  branch_condensed_distance  |  Ground truth  |  Gender       |  Age
----------|----------------------------|------|--------------------|-----------------------------|----------------|---------------|-------------
-C4       |  S185;S179;S160;S182;S155  |  54  |  0.346298577       |  0.517295151                |  1             |  0.103361176  |  0.025490005
-C2       |  S65;S102;S72;S88;S73      |  52  |  0.35782405        |  0.426337551                |  1             |  0.103361176  |  0.025490005
-C3       |  S13;S28;S12;S37;S25       |  51  |  0.330115156       |  0.53203748                 |  1             |  0.103361176  |  0.025490005
-C1       |  S129;S113;S132;S122;S131  |  43  |  0.321199973       |  0.365275944                |  1             |  0.103361176  |  0.025490005
-```
-*   File name: `` $OUTPUT_DIR/clusters.txt ``
-*   This file details the clusters. Features are grouped in clusters.
-*    **```Cluster```**: a column contains clusters names that each cluster name starts with `C` following with a number.
-*    **```Members```**: has one or more features that participate in the cluster.
-*    **```n```**: this value is corresponding to `binary silhouette score` introduced in this work.
-*    **```resolution_score```**: this value is corresponding to `binary silhouette score` introduced in this work.
-*    **```branch_condensed_distance```**: this value is corresponding to `condensed distance` of a cluster branch in hierarchy.
-*    **```Ground truth```**: is a metadata that has the actual membership of features in synthetic data and 
-it was most influential metadata with normalized mutual information (NMI) 1. _omeClust_ uses NMI between 
-metadata categories and labels of detected clusters (communities) as an enrichment score for each metadata. 
-*    **```Gender```**: is the second influential metadata with NMI 0.1.
-*    **```Age```**: Age is has less overlap with clusters. _omeClust_ discretize continuous (numeric) metadata to 
-calculate enrichment score.   
-
-
-# Guides to omeClustviz for visuzlaization #
-
-
-* **Basic usage:** `$ omeClustviz /path-to-omeClust-output/adist.txt /path-to-omeClust-output/clusters.txt --metadata metadata.txt --shapeby meta1 -o /path-to-omeClust-output/`
-* `adist.txt` = an distance matrix that used for clustering 
-* `clusters.txt` = an omeClust output which assigns features to clusters
-* `metadata.txt`: is metadata file which contains metadata for features
-* `meta1`: is a metadata in the metadata file to be used for shaping points in the ordination plot
-* Run with `-h` to see additional command line options
-
-Produces a set of ordination plots for features colored by computational clusters and shaped by metadata.
 
 ```
 $ deepStrain -h
@@ -236,127 +173,11 @@ optional arguments:
   --point-size POINT_SIZE
                         width and height of plots
   --show                show ordination plot before save
-```
 
-
-## deepStrain synthetic paired datasets generator ##
-
-```buildoutcfg=
-$ python3
-from  deepStrain import cluster_generator
-from  deepStrain import dataprocess
-nX = 100
-nY = 100 
-nSamples = 50
- X,Y,A = cluster_generator.circular_block(nSamples = nSamples, nX =nX, nY = nY, nBlocks =5, noiseVar = 0.1,
-... blockIntraCov = 0.3, offByOneIntraCov = 0.0,
-... blockInterCov = 0.2, offByOneInterCov = 0.0,
-... holeCov = 0.3, holeProb = .25)
-
-# wite file
-dataprocess.write_table(X, name= '/your-file-path/' + 'X_'+ str(nSamples) + '_' + str(nX) + '.txt', prefix="Feature")
-
-dataprocess.write_table(Y, name= '/your-file-path/' + 'Y_'+ str(nSamples) + '_' + str(nY) + '.txt', prefix="Feature")
-rowheader = ['Feature'+ str(i) for i in range(0, nX)]
-colheader = ['Feature'+ str(i) for i in range(0, nY)]
-
-dataprocess.write_table(A, name= '/your-file-path/' + 'A_'+ str(nX) + '_' + str(nY) +'.txt', prefix="Feature", colheader = colheader, rowheader = rowheader)
-```
-`circular_block` function returns two datasets `X` and `Y`, and also 
-`A` matrix for relationships between features among these two datasets.
-
-Here is a description for parameters of the function for properties of 
-the datasets and spiked relationship within and between datasets:
-* `nSample`: number of samples in each datasets (appers as columns)
-* `nX`: number of features in each datasets (appears as rows of X)
-* `nY`: number of features in each datasets (appears as rows of Y)
-* `nBlocks`: number of clusters in each dataset
-* `noiseVar`: noise variable between [0.0..1.0], 0.0 refers to no noise
-* `blockIntraCov`: specifies covariance between features within a cluster
-* `offByOneIntraCov`: 
-* `blockInterCov`: specifies covariance between features among clusters between datasets
-* `offByOneInterCov`:
-* `holeCov`:
-* `holeCov`: 
-* `holeProb`: 
-
-## Tutorials for distance calculation ##
-
-_deepStrain_ is a genric tools and users can calculate a distance matrix using any appropriate method for their omics data 
-and provide it as the input to _omeClust_. Here we provide methods for several **omics** applications. 
-
-### Distance between sequencing alignments ###
-Multiple sequence alignment (MSA) file can be used to measure dissimilarity between genomes or strains.
-We have used this approch to investigate Coronavirus strains and microbial strains.
-
-Below is demo code in `R` to calculate dissimalrity between aligned sequnces in a `fasta` format MSA file 
-```buildoutcfg=
-library(ape)
-
-#read FASTA file
-seq <- read.FASTA('data/Campylobacter_showae.fasta')
-
-# distance calculation
-D <- dist.dna(seq, model = "TN93", gamma = F, variance = TRUE,
-              pairwise.deletion = TRUE,
-              base.freq = NULL, as.matrix = TRUE)
-
-# write distance matrix to a file taht can be used as input for omeClust
-write.table( D, 'distance_matrix.txt', sep = "\t", eol = "\n", na = "", col.names = NA, quote= F, row.names = T)
-```
-
-### Distance using dissimilarity methods such as Bray-Curtis ###
-
-```buildoutcfg=
-
-library(vegan)
-
-##### load data from GWDBB package #####
-
-# 1- install GWDBB package
-library(devtools)
-install_github('GWCBI/GWDBB')
-library(GWDBB)
-
-# 2- load HMP1-II metadata
-data("HMP1_II_Metadata")
-
-# 3- See teh data: there is mislocation of headers du to space in a clumn header
-View(HMP1_II_Metadata)
-
-# 4- fix the headers
-colnames(HMP1_II_Metadata) <- c("Person_ID", "VISNO", "Body_area", "Body_site", "SNPRNT",  "Gender", "WMSPhase")
-
-# 5- slect meatadata of interest
-my_HMP_metadata <- HMP1_II_Metadata[,c("Body_area", "Body_site", "Gender")]
-
-# 6- write the meatdata in you computer as a tab-delimited file 
-write.table( my_HMP_metadata, 'data/my_HMP_metadata.txt', sep = "\t", eol = "\n", na = "", col.names = NA, quote= F, row.names = T)
-
-# 7- load HMP1-II microbial species abundances
-data("HMP1_II_Microbial_Species")
-HMP1_II_Microbial_Species <- t(HMP1_II_Microbial_Species)
-
-# 8- calculate simailrty between samples based on microbial species abundance
-library(vegan)
-veg_dist <- as.matrix(vegdist(HMP1_II_Microbial_Species, method="bray"))
-
-# 9- write the  in you computer as a tab-delimited file
-write.table( veg_dist, 'data/HMP_disatnce.txt', sep = "\t", eol = "\n", na = "", col.names = NA, quote= F, row.names = T)
-
-
-# 10-  run the tool using HMP1-II data and metadata using 
-$ omeClust -i HMP_disatnce.txt --metadata my_HMP_metadata.txt -o HMP_omeClust
 ```
 ### Distance using genomics variation ###
 
 # Real world example #
 
-## Microbial species communities ##
-
-
-## Microbial strains ##
-
-## Cell line gene expressions ##
 
 
