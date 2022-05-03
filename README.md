@@ -12,7 +12,6 @@
 ## Contents ##
 * [Features](#features)
 * [deepStrain](#deepStrain)
-    * [deepStrain approach](#deepStrain-approach)
     * [Requirements](#requirements)
     * [Installation](#installation)
 * [Getting Started with deepStrain](#getting-started-with-deepStrain)
@@ -21,7 +20,7 @@
     * [Input](#input)
     * [Output](#output)  
 * [Real world examples](#real-world-examples)
-    * [visualization](#microbial-species-communities)
+    * [Visulization](#visulization-demo)
 * [Support](#Support)
 ------------------------------------------------------------------------------------------------------------------------------
 # Features #
@@ -43,8 +42,6 @@
     * Cladogram generation w/ annotations
     
 # deepStrain #
-## deepStrain approach ##
-
 
 ## REQUIREMENTS ##
 * [Matplotlib](http://matplotlib.org/)
@@ -137,10 +134,9 @@ usage: deepStrain [-h] [--metadata METADATA] [--shapeby SHAPEBY] -o OUTPUT [--si
 
 # Real world example #
 ## Visulization Demo ##
-1. Go to the deepStrain/Notebook, download FiveTargetNum.tsv, FiveTargetReads.tsv and stackedplot.ipynb.
+1. Go to the deepStrain/Notebooks, download FiveTargetNum.tsv, FiveTargetReads.tsv and stackedplot.ipynb.
 2. FiveTargetNum.tsv and FiveTargetReads.tsv are two output files that generated from deepStrain.
-3. The stacked bar plot show the composition distribution and their corresponding reads.
-4. The final look could be liked the following:
-
-
-
+3. Run the code either on the google colab or in your loacl environment.
+4. The stacked bar plot show the composition distribution and their corresponding reads.
+5. The final look could be liked the following:
+![stacked plot](https://github.com/omicsEye/deepStrain/blob/main/Notebooks/stackedplot.png)
