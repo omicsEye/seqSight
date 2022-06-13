@@ -1,6 +1,6 @@
 # from __future__ import print_function
 """
-deepStrain utilities
+seqSight utilities
 """
 import re
 import sys

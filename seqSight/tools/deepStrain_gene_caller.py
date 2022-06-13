@@ -16,8 +16,8 @@ def main():
     # new_contig_file = utilities.append_filename2contignames(args.contig)
     # rename the inputs to bowtie2_output folder
     os.system(
-        "cp /Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/TestData/demo.fna  "
-        "/Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/bowtie2_output/demo.fna")
+        "cp /Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test/TestData/demo.fna  "
+        "/Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test/bowtie2_output/demo.fna")
 
     config.temp_dir = config.output_folder + '/prodigal_output/'
     utilities.make_directory(config.temp_dir)
@@ -31,7 +31,7 @@ def main():
 
     # reads alignment using Bowtie2
     gene_alignment_file = utilities.alignment(
-        "/Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/TestData/demo1_Testdata.fasta", index_name)
+        "/Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test/TestData/demo1_Testdata.fasta", index_name)
     config.temp_dir = config.output_folder + '/featureCounts_output/'
     utilities.make_directory(config.temp_dir)
     # gene abundance using featureCounts
@@ -39,9 +39,9 @@ def main():
     abundance_file = utilities.abundance(genes_file_gff, gene_alignment_file)
 
     # os.system("featureCounts -T 8 -g ID -t CDS  -a
-    # Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/prodigal_output/.gff -o
-    # /Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/featureCounts_output/counts.txt
-    # /Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/bowtie2_output/.sam")
+    # Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test/prodigal_output/.gff -o
+    # /Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test/featureCounts_output/counts.txt
+    # /Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test/bowtie2_output/.sam")
 
     print("end")
     shutil.move(abundance_file, config.output_folder + '/' + os.path.basename(os.path.normpath(abundance_file)))
@@ -60,5 +60,5 @@ def main():
 
 
 if __name__ == '__main__':
-    uniref_db = "/Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test/TestData/uniref90.fasta"
+    uniref_db = "/Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test/TestData/uniref90.fasta"
     main()

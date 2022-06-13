@@ -35,57 +35,47 @@ except ImportError:
     ]
 
 VERSION = "1.0"
-AUTHOR = "Ali Rahnavard, Xinyang Zhang"
+AUTHOR = "Tyson Dawson, Xinyang Zhang, Ali Rahnavard"
 AUTHOR_EMAIL = "gholamali.rahnavard@gmail.com, kathyzhang415@gmail.com"
-MAINTAINER = "Ali Rahnavard, Xinyang Zhang"
-MAINTAINER_EMAIL = "gholamali.rahnavard@gmail.com, kathyzhang415@gmail.com"
+MAINTAINER = "Tyson Dawson, Xinyang Zhang, Ali Rahnavard"
+MAINTAINER_EMAIL = "tysondawson@gmail.com, kathyzhang415@gmail.com, gholamali.rahnavard@gmail.com"
 
 # try to download the bitbucket counter file to count downloads
 # this has been added since PyPI has turned off the download stats
 # this will be removed when PyPI Warehouse is production as it
 # will have download stats
-COUNTER_URL = "https://github.com/omicsEye/deepStrain/blob/master/README.md"
+COUNTER_URL = "https://github.com/omicsEye/seqSight/blob/master/README.md"
 counter_file = "README.md"
 if not os.path.isfile(counter_file):
-    print("Downloading counter file to track deepStrain downloads" +
+    print("Downloading counter file to track seqSight downloads" +
           " since the global PyPI download stats are currently turned off.")
     try:
         pass  # file, headers = urlretrieve(COUNTER_URL,counter_file)
     except EnvironmentError:
         print("Unable to download counter")
-
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
 setup(
-    name="deepStrain",
+    name="seqSight",
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     version=VERSION,
     license="MIT",
-    description="deepStrain: multi-resolution clustering",
-    long_description="deepStrain provides an elegant clustering approach " + \
-                     "to find clusters in data sets with different density and resolution.",
-    url="http://github.com/omicsEye/deepStrain",
-    keywords=['clustering', 'multi-resolution', 'hierarchically'],
+    description="seqSight: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data",
+    long_description="seqSight: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data.",
+    url="http://github.com/omicsEye/seqSight",
+    keywords=['Microbiome', 'metagenomics', 'gene', "biosynthetic gene clusters", "Microbial profiling"],
     platforms=['Linux', 'MacOS', "Windows"],
     classifiers=classifiers,
     # long_description=open('readme.md').read(),
-    install_requires=[
-        "latex >= 0.0.1",
-        "Cython >= 0.29.2",
-        "Numpy >= 1.9.2",
-        "Scipy >= 0.17.0",
-        "Matplotlib >= 1.5.1",
-        "Scikit-learn >= 0.14.1",
-        "pandas >= 0.18.1",
-        "Community == 1.0.0b1",
-        "networkx >= 0.2.5"
-    ],
+    install_requires=required,
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'deepStrain = deepStrain.deepStrain:main',
-            'deepStrainviz = deepStrain.viz:main',
-            'deepStrain_test = deepStrain.tests.deepStrain_test:main'
+            'seqSight = seqSight.seqSight:main',
+            'seqSightviz = seqSight.viz:main',
+            'seqSight_test = seqSight.tests.seqSight_test:main'
         ]},
-    test_suite='deepStrain.tests.deepStrain_test',
+    test_suite='seqSight.tests.seqSight_test',
     zip_safe=False
 )
