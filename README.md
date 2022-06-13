@@ -1,6 +1,6 @@
 # seqSight: #
 
-**seqSight** is a toolj to ointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data; it is designed to provided maximum utility to the user by incorporating a number of analysis modules for the quantification of not only bacterial strains but also gene families and biosynthetic gene clusters. seqSight also incorporates quality control modules and visualization tools.
+**seqSight** is a tool to jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data; it is designed to provided maximum utility to the user by incorporating a number of analysis modules for the quantification of not only bacterial strains but also gene families and biosynthetic gene clusters. seqSight also incorporates quality control modules and visualization tools.
  
 ---
 
@@ -71,7 +71,6 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 * [diamond 2.0.14](https://github.com/bbuchfink/diamond)
 
 ## INSTALLATION ##
- - not finished yet
 
 Linux based and Mac OS:
 * First open a terminal 
@@ -91,6 +90,45 @@ $ pip3 install seqSight
 ```
 
 * You can replace `pip3` by `pip` if you have only Python 3 installed on your computer. `pip3` specifies to install `seqSight` for Python 3. 
+
+<span style="color:#033C5A">*If you have a working conda on your system, you can safely skip to step three*</span>.
+
+* Install *conda*  
+Go to the [Anaconda website](https://www.anaconda.com/) and download the latest version for your operating system.  
+*DO NOT FORGET TO ADD CONDA TO your system PATH*
+* Second is to check for conda availability  
+open a terminal (or command line for Windows users) and run:
+```
+conda --version
+```
+it should out put something like:
+```
+conda 4.9.2
+```
+<span style="color:#fc0335">if not, you must make *conda* available to your system for further steps.</span>
+if you have problems adding conda to PATH, you can find instructions [here](https://docs.anaconda.com/anaconda/user-guide/faq/).
+  
+* Third create a new conda environment (let's call it deepBreaks_env) with the following command:
+```
+conda create --name seqSight_env python=3.8
+```
+* Then activate your conda environment:
+```commandline
+conda activate seqSight_env 
+```
+* Finally, install *seqSight*:
+
+* You can directly install if from GitHub:
+```commandline
+python -m pip install git+https://github.com/omicsEye/seqSight
+```
+* or before running the following line you should change your directory to the same directory that you have cloned the 
+  seqSight repo:
+```commandline
+python -m pip install .
+```
+
+------------------------------------------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------------------------------------------------
 

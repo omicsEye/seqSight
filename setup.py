@@ -34,7 +34,7 @@ except ImportError:
         "Topic :: Scientific/Engineering :: Bio-Informatics"
     ]
 
-VERSION = "1.0"
+VERSION = "1.0.0"
 AUTHOR = "Tyson Dawson, Xinyang Zhang, Ali Rahnavard"
 AUTHOR_EMAIL = "gholamali.rahnavard@gmail.com, kathyzhang415@gmail.com"
 MAINTAINER = "Tyson Dawson, Xinyang Zhang, Ali Rahnavard"
@@ -72,10 +72,8 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'seqSight = seqSight.seqSight:main',
-            'seqSightviz = seqSight.viz:main',
-            'seqSight_test = seqSight.tests.seqSight_test:main'
+            'seqSight = seqSight.seqSight:main'
         ]},
-    test_suite='seqSight.tests.seqSight_test',
+    #test_suite='seqSight.tests.seqSight_test',
     zip_safe=False
 )
