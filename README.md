@@ -1,11 +1,11 @@
-# deepStrain: #
+# seqSight: #
 
-**deepStrain** is a strain-level metagenomics analysis tool; it is designed to provided maximum utility to the user by incorporating a number of analysis modules for the quantification of not only bacterial strains but also gene families and biosynthetic gene clusters. deepStrain also incorporates quality control modules and visualization tools.
+**seqSight** is a strain-level metagenomics analysis tool; it is designed to provided maximum utility to the user by incorporating a number of analysis modules for the quantification of not only bacterial strains but also gene families and biosynthetic gene clusters. seqSight also incorporates quality control modules and visualization tools.
 
 ---
 
 # Citation: #
- Xinyang Zhang, Tyson Dawson, Keith A. Crandall, Ali Rahnavard (2022+), **deepStrain: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data**, https://github.com/omicsEye/deepStrain
+ Xinyang Zhang, Tyson Dawson, Keith A. Crandall, Ali Rahnavard (2022+), **seqSight: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data**, https://github.com/omicsEye/seqSight
 
 # Attention # 
 ----
@@ -13,19 +13,19 @@
 Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common questions before open issue thread there.
 
 ----
-# deepStrain user manual
+# seqSight user manual
 
 ## Contents ##
 * [Features](#features)
-* [deepStrain](#deepStrain)
+* [seqSight](#seqsight)
     * [Requirements](#requirements)
     * [Installation](#installation)
-* [Getting started with deepStrain](#getting-started-with-deepStrain)
-    * [Test deepStrain](#test-deepStrain)
+* [Getting started with seqSight](#getting-started-with-seqSight)
+    * [Test seqSight](#test-seqSight)
     * [Options](#options) 
     * [Input](#input)
     * [Output](#output)  
-* [deepStrain piplines](#deepStrain-piplines)
+* [seqSight piplines](#seqSight-piplines)
    * [Taxonomic profiling](#taxonomic-profiling)
    * [Biosynthetic gene clusters profiling](Biosynthetic-gene-clusters-profiling)
    * [Gene families profiling](#Gene-families-profiling)
@@ -38,7 +38,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 * [Support](#Support)
 ------------------------------------------------------------------------------------------------------------------------------
 # Features #
-1. Generality: deepStrain uses sequence reads as input with filtering and QC.
+1. Generality: seqSight uses sequence reads as input with filtering and QC.
 
 2. Mapping database
     * Taxonomic Reference Genomes
@@ -56,9 +56,9 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * Cladogram generation w/ annotations
 
 
-![overall-fig](https://github.com/omicsEye/deepStrain/blob/main/img/fig1_general_pipeline_v2.png)
+![overall-fig](https://github.com/omicsEye/seqSight/blob/main/img/fig1_general_pipeline_v2.png)
     
-# deepStrain #
+# seqSight #
 
 ## REQUIREMENTS ##
 * [Matplotlib](http://matplotlib.org/)
@@ -76,7 +76,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 Linux based and Mac OS:
 * First open a terminal 
 ```
-$ sudo pip3 install deepStrain
+$ sudo pip3 install seqSight
 ```
 If you use `sudo` then you need provide admin password and teh software will be installed for all users.
 
@@ -87,33 +87,33 @@ Windows OS:
 then run the following command 
 
 ```
-$ pip3 install deepStrain
+$ pip3 install seqSight
 ```
 
-* You can replace `pip3` by `pip` if you have only Python 3 installed on your computer. `pip3` specifies to install `deepStrain` for Python 3. 
+* You can replace `pip3` by `pip` if you have only Python 3 installed on your computer. `pip3` specifies to install `seqSight` for Python 3. 
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-# Getting Started with deepStrain #
+# Getting Started with seqSight #
 
-## Test deepStrain ##
+## Test seqSight ##
 
-To test if deepStrain is installed correctly, you may run the following command in the terminal:
+To test if seqSight is installed correctly, you may run the following command in the terminal:
 
 ```
 #!cmd
 
-deepStrain -h
+seqSight -h
 
 ```
-Which yields deepStrain command line options.
+Which yields seqSight command line options.
 
 
 ## Options ##
 
 ```
-$ deepStrain -h
-usage: deepStrain [-h] [--version] [-i INPUT] -o OUTPUT 
+$ seqSight -h
+usage: seqSight [-h] [--version] [-i INPUT] -o OUTPUT 
  
 optional arguments:
   -h, --help            show this help message and exit
@@ -138,27 +138,27 @@ A list of all options are provided in #options section.
 
 ## Output ##
 ```
-$ deepStrain -h
-usage: deepStrain [-h] 
+$ seqSight -h
+usage: seqSight [-h] 
 
 ```
-# deepStrain piplines # 
+# seqSight piplines # 
 ## Taxonomic profiling ##
 1. Bayesian Reassignment
 
 
-![tax1](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile1.png)
+![tax1](https://github.com/omicsEye/seqSight/blob/main/img/taxProfile1.png)
 
 2. Taxonomic profiling
 
 
-![tax2](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile2.png)
+![tax2](https://github.com/omicsEye/seqSight/blob/main/img/taxProfile2.png)
 
 
 3. Visualization
 
 
-![tax3](https://github.com/omicsEye/deepStrain/blob/main/img/taxProfile3.png)
+![tax3](https://github.com/omicsEye/seqSight/blob/main/img/taxProfile3.png)
 
 # Real world example #
 ## Visulization Demo ##
@@ -167,4 +167,4 @@ usage: deepStrain [-h]
 3. Run the code either on the google colab or in your loacl environment.
 4. The stacked bar plot show the composition distribution and their corresponding reads.
 5. The final look could be liked the following:
-![stacked plot](https://github.com/omicsEye/deepStrain/blob/main/Notebooks/stackedplot.png)
+![stacked plot](https://github.com/omicsEye/seqSight/blob/main/Notebooks/stackedplot.png)
