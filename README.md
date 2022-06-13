@@ -108,7 +108,7 @@ conda 4.9.2
 <span style="color:#fc0335">if not, you must make *conda* available to your system for further steps.</span>
 if you have problems adding conda to PATH, you can find instructions [here](https://docs.anaconda.com/anaconda/user-guide/faq/).
   
-* Third create a new conda environment (let's call it deepBreaks_env) with the following command:
+* Third create a new conda environment (let's call it seqSight_env) with the following command:
 ```
 conda create --name seqSight_env python=3.8
 ```
