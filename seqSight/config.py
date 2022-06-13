@@ -1,8 +1,8 @@
 #default values for user options
 version = '1.0.0'
 input_table = ''
-output_folder = '/Users/xinyangzhang/Documents/GitHub/deepStrain/deepStrain/Test'
-basename = 'deepStrain'
+output_folder = '/Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/Test'
+basename = 'seqSight'
 log_level = 'DEBUG'
 verbose = 'DEBUG'
 nprocesses = 1

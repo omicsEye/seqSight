@@ -47,7 +47,7 @@ MAINTAINER_EMAIL = "gholamali.rahnavard@gmail.com, kathyzhang415@gmail.com"
 COUNTER_URL = "https://github.com/omicsEye/deepStrain/blob/master/README.md"
 counter_file = "README.md"
 if not os.path.isfile(counter_file):
-    print("Downloading counter file to track deepStrain downloads" +
+    print("Downloading counter file to track seqSight downloads" +
           " since the global PyPI download stats are currently turned off.")
     try:
         pass  # file, headers = urlretrieve(COUNTER_URL,counter_file)
@@ -55,13 +55,13 @@ if not os.path.isfile(counter_file):
         print("Unable to download counter")
 
 setup(
-    name="deepStrain",
+    name="seqSight",
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     version=VERSION,
     license="MIT",
-    description="deepStrain: multi-resolution clustering",
-    long_description="deepStrain provides an elegant clustering approach " + \
+    description="seqSight: multi-resolution clustering",
+    long_description="seqSight provides an elegant clustering approach " + \
                      "to find clusters in data sets with different density and resolution.",
     url="http://github.com/omicsEye/deepStrain",
     keywords=['clustering', 'multi-resolution', 'hierarchically'],
@@ -82,10 +82,10 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'deepStrain = deepStrain.deepStrain:main',
-            'deepStrainviz = deepStrain.viz:main',
-            'deepStrain_test = deepStrain.tests.deepStrain_test:main'
+            'seqSight = seqSight.seqSight:main',
+            'deepStrainviz = seqSight.viz:main',
+            'deepStrain_test = seqSight.tests.deepStrain_test:main'
         ]},
-    test_suite='deepStrain.tests.deepStrain_test',
+    test_suite='seqSight.tests.deepStrain_test',
     zip_safe=False
 )
