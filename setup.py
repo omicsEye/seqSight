@@ -72,7 +72,8 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'seqSight = seqSight.seqSight:main'
+            'seqSight = seqSight.seqSight:main',
+            'seqSight_join_tables = seqSight.tools.join_tables:main'
         ]},
     #test_suite='seqSight.tests.seqSight_test',
     zip_safe=False
