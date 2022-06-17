@@ -25,13 +25,13 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * [Options](#options) 
     * [Input](#input)
     * [Output](#output)  
-* [seqSight piplines](#seqSight-piplines)
+* [seqSight pipelines](#seqSight-pipelines)
    * [Taxonomic profiling](#taxonomic-profiling)
    * [Biosynthetic gene clusters profiling](Biosynthetic-gene-clusters-profiling)
    * [Gene families profiling](#Gene-families-profiling)
    * [Strain profiling](#Strain-profiling)
 * [Utilities](#Utilities)
-   * [Joint profiles](#joint-profiles)
+   * [Join tables](#join-tables)
    * [QC Visualization](#qc-visulization-demo) 
 * [Real world examples](#real-world-examples)
     * [Visualization](#visulization-demo)
@@ -198,7 +198,12 @@ usage: seqSight [-h]
 
 ![tax3](https://github.com/omicsEye/seqSight/blob/main/img/taxProfile3.png)
 
-# Real world example #
+## Utilities ##
+
+### Join tables ###
+
+
+
 ## Visulization Demo ##
 1. Go to the seqSight/Notebooks, download FiveTargetNum.tsv, FiveTargetReads.tsv and stackedplot.ipynb.
 2. FiveTargetNum.tsv and FiveTargetReads.tsv are two output files that generated from seqSight.
