@@ -7,17 +7,13 @@ This module will join gene and pathway tables output by HUMAnN.
 Dependencies: Biom (only required if running with .biom files)
 To Run:
 $ ./join_tables.py -i <input_dir> -o <gene_table.{tsv,biom}>
+
 """
 
 import argparse
 import sys
-import tempfile
 import os
-import shutil
-import re
 import pandas as pd
-
-from seqSight.tools import util
 
 GENE_TABLE_DELIMITER = "\t"
 
@@ -30,11 +26,6 @@ def parse_arguments(args):
     parser = argparse.ArgumentParser(
         description="Join seqSight Mapping tables\n",
         formatter_class=argparse.RawTextHelpFormatter)
-    # parser.add_argument(
-    #     "-v", "--verbose",
-    #     help="additional output is printed\n",
-    #     action="store_true",
-    #     default=False)
     parser.add_argument(
         "-i", "--input",
         help="the directory of tables\n",
@@ -51,12 +42,6 @@ def parse_arguments(args):
         default="Final Best Hit",
         help="Name of the column from the input tables that you want to use in join_tables function\n",
         required=False)
-
-    # parser.add_argument(
-    #     "-s", "--search-subdirectories",
-    #     help="search sub-directories of input folder for files\n",
-    #     action="store_true",
-    #     default=False)
 
     return parser.parse_args()
 
@@ -75,29 +60,28 @@ def main():
 
     print(output_dir)
 
-
     # check the directory exists
     if not os.path.isdir(input_dir):
         sys.exit("The input directory provided can not be found." +
                  "  Please enter a new directory.")
 
     path_list2 = os.listdir(input_dir)
-    print(path_list2)
+    # print(path_list2)
 
     # Set the first one as base
-    samp2 = pd.read_csv(input_dir + "/193-sam-report.tsv", delimiter='\t', header=0, skiprows=1)
+    samp2 = pd.read_csv(input_dir + "/" + path_list2[0], delimiter='\t', header=0, skiprows=1)
     # Final best Hit change to colname
     s2 = samp2[["Genome", args.colname]]
-    lst = ["Genome_ID", "193"]
+    lst = ["Genome_ID", path_list2[0].split(".tsv")[0]]
     s2.columns = lst
 
     # Apply for the rest others
     for i in path_list2[1:]:
         if i != ".DS_Store":
             print(i)
-            samp = pd.read_csv(input_dir + "/" +i, delimiter='\t', header=0, skiprows=1)
+            samp = pd.read_csv(input_dir + "/" + i, delimiter='\t', header=0, skiprows=1)
             temp = samp[["Genome", args.colname]]
-            renamelst = ["Genome_ID", i.split("-")[0]]
+            renamelst = ["Genome_ID", i.split(".tsv")[0]]
             temp.columns = renamelst
             s2 = pd.merge(s2, temp, how='outer', on=['Genome_ID'])
     # pd.set_option('display.max_rows',None)
@@ -108,6 +92,7 @@ def main():
 
     # s2.to_csv(output_dir + "SampeToFullGenome0610.csv")  # 可以指定文件目录路径
     s2.to_csv(output_dir)
+
 
 if __name__ == "__main__":
     main()
