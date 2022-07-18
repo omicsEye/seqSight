@@ -8,6 +8,9 @@ import os
 import shutil
 import csv
 import pdb
+import tarfile
+from urllib.request import urlretrieve
+
 import Bio
 import gzip
 import logging
@@ -21,6 +24,9 @@ from matplotlib import pyplot as plt
 from Bio import Seq
 import pandas as pd
 import config
+
+import datetime
+import time
 
 # name global logging instance
 logging.basicConfig()
@@ -1486,3 +1492,71 @@ def intersect(a, b):
     """ return the intersection of two lists """
     return list(set(set(a) & set(b)))
 
+
+class ReportHook():
+    def __init__(self):
+        self.start_time = time.time()
+
+    def report(self, blocknum, block_size, total_size):
+        """
+        Print download progress message
+        """
+
+        if blocknum == 0:
+            self.start_time = time.time()
+            if total_size > 0:
+                print("Downloading file of size: " + "{:.2f}".format(byte_to_gigabyte(total_size)) + " GB\n")
+        else:
+            total_downloaded = blocknum * block_size
+            status = "{:3.2f} GB ".format(byte_to_gigabyte(total_downloaded))
+
+            if total_size > 0:
+                percent_downloaded = total_downloaded * 100.0 / total_size
+                # use carriage return plus sys.stdout to overwrite stdout
+                download_rate = total_downloaded / (time.time() - self.start_time)
+                estimated_time = (total_size - total_downloaded) / download_rate
+                estimated_minutes = int(estimated_time / 60.0)
+                estimated_seconds = estimated_time - estimated_minutes * 60.0
+                status += "{:3.2f}".format(percent_downloaded) + " %  " + \
+                          "{:5.2f}".format(byte_to_megabyte(download_rate)) + " MB/sec " + \
+                          "{:2.0f}".format(estimated_minutes) + " min " + \
+                          "{:2.0f}".format(estimated_seconds) + " sec "
+            status += "        \r"
+            sys.stdout.write(status)
+
+
+def download_tar_and_extract_with_progress_messages(url, filename, folder):
+    """
+    Download the file at the url
+    """
+
+    # check for local file
+    local_file = False
+    if os.path.isfile(url):
+        local_file = True
+
+    if not local_file:
+        print("Download URL: " + url)
+
+    try:
+        if not local_file:
+            url_handle = urlretrieve(url, filename, reporthook=ReportHook().report)
+        else:
+            filename = url
+
+        print("\nExtracting: " + filename)
+        #tarfile_handle = tarfile.open(filename)
+        #tarfile_handle.extractall(path=folder)
+    except (EnvironmentError, tarfile.ReadError):
+        if local_file:
+            sys.exit("CRITICAL ERROR: Unable to extract from local file: " + url)
+        else:
+            sys.exit("CRITICAL ERROR: Unable to download and extract from URL: " + url)
+
+
+def byte_to_megabyte(byte):
+    """
+    Convert byte value to megabyte
+    """
+
+    return byte / (1024.0 ** 2)
