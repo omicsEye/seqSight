@@ -73,7 +73,8 @@ setup(
     entry_points={
         'console_scripts': [
             'seqSight = seqSight.seqSight:main',
-            'seqSight_join_tables = seqSight.tools.join_tables:main'
+            'seqSight_join_tables = seqSight.tools.join_tables:main',
+            'seqSight_barplot = seqSight.tools.seqSight_barplot:main'
         ]},
     #test_suite='seqSight.tests.seqSight_test',
     zip_safe=False

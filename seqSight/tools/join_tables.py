@@ -22,7 +22,6 @@ def parse_arguments(args):
     """
     Parse the arguments from the user
     """
-
     parser = argparse.ArgumentParser(
         description="Join seqSight Mapping tables\n",
         formatter_class=argparse.RawTextHelpFormatter)
