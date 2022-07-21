@@ -56,7 +56,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * Cladogram generation w/ annotations
 
 
-![overall-fig](https://github.com/omicsEye/seqSight/blob/main/img/fig1_general_pipeline_v2.png)
+![overall-fig](https://github.com/omicsEye/seqSight/blob/main/img/fig1_general_pipeline.png)
     
 # seqSight #
 
