@@ -77,7 +77,8 @@ setup(
             'seqSight = seqSight.seqSight:main',
             'seqSight_join_tables = seqSight.tools.join_tables:main',
             'seqSight_barplot = seqSight.tools.seqSight_barplot:main',
-            'seqSight_databases = seqSight.tools.seqSight_databases:main'
+            'seqSight_databases = seqSight.tools.seqSight_databases:main',
+            'seqSight_config = seqSight.tools.seqSight_config:main'
         ]},
     #test_suite='seqSight.tests.seqSight_test',
     zip_safe=False

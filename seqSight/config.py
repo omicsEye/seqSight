@@ -87,6 +87,7 @@ pick_frames_toggle = 'on'
 resume = False
 
 # Modify on 07-25-2022 - Xinyang
+
 user_edit_config_file = "seqSight.cfg"
 
 full_path_user_edit_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -102,7 +103,7 @@ def update_user_edit_config_file_single_item(section, name, value):
 
     update_user_edit_config_file(new_config_items)
 
-    print("HUMAnN configuration file updated: " + section + " : " + name + " = " + str(value))
+    print("seqSight configuration file updated: " + section + " : " + name + " = " + str(value))
 
 
 def update_user_edit_config_file(new_config_items):
