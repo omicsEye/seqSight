@@ -1545,8 +1545,9 @@ def download_tar_and_extract_with_progress_messages(url, filename, folder):
             filename = url
 
         print("\nExtracting: " + filename)
-        #tarfile_handle = tarfile.open(filename)
-        #tarfile_handle.extractall(path=folder)
+        # tarfile_handle = tarfile.open(filename)
+        # tarfile_handle.extractall(path=folder)
+
     except (EnvironmentError, tarfile.ReadError):
         if local_file:
             sys.exit("CRITICAL ERROR: Unable to extract from local file: " + url)

@@ -45,7 +45,7 @@ from .. import utilities
 current_downloads = {
     "fungi":
         {
-            "full": "https://gwu.box.com/shared/static/quywa5pq2mq2c27ptocotmx334zikmye.gz",
+            "full": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
             "DEMO": "http://huttenhower.sph.harvard.edu/humann_data/chocophlan/DEMO_chocophlan.v201901_v31.tar.gz"
         },
     "uniref":
@@ -63,6 +63,7 @@ current_downloads = {
 }
 
 database_type = {
+    "fungi": "fungi",
     "chocophlan": "nucleotide",
     "uniref": "protein",
     "utility_mapping": "utility_mapping"
