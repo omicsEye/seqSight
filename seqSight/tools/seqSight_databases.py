@@ -25,15 +25,15 @@ THE SOFTWARE.
 
 import sys
 
-# Try to load one of the seqSight src modules to check the installation
-try:
-    from .. import check
-except ImportError:
-    sys.exit("CRITICAL ERROR: Unable to find the seqSight python package." +
-             " Please check your install.")
-
-# Check the python version
-check.python_version()
+# # Try to load one of the seqSight src modules to check the installation
+# try:
+#     from .. import check
+# except ImportError:
+#     sys.exit("CRITICAL ERROR: Unable to find the seqSight python package." +
+#              " Please check your install.")
+#
+# # Check the python version
+# check.python_version()
 
 import argparse
 import os

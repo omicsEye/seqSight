@@ -4,6 +4,8 @@
 This code has been adopted from humann DOI: https://doi.org/10.1038/s41592-018-0176-y
 To Run:
 $ python ./seqSight_barplot.py -i1 <input_dir1> -i2 <input_dir2> -title <"name_of_barplot"> -o <barplot>
+$ python ./seqSight_barplot.py -i1 /Users/xinyangzhang/Downloads/bacterial/all5ResultsNum120.tsv -i2 /Users/xinyangzhang/Downloads/bacterial/FiveTargetReads120.tsv -t "life time omics"  -o ./test_barplot.pdf
+
 """
 import pandas as pd
 import os
@@ -12,6 +14,7 @@ import numpy as np
 import argparse
 import matplotlib.gridspec as gridspec
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
@@ -47,6 +50,7 @@ def parse_arguments(args):
         help="output name of the barplot")
 
     return parser.parse_args()
+
 
 def main():
     args = parse_arguments(sys.argv)
@@ -209,7 +213,7 @@ def main():
     ax2.spines["top"].set_visible(False)
 
     plt.suptitle(args.title)
-    plt.xlabel("Sample N="+str(x2))
+    plt.xlabel("Sample N=" + str(x2))
     plt.savefig(output_dir, dpi=100, bbox_inches="tight")
 
 
