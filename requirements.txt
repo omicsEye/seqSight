@@ -6,3 +6,4 @@ Matplotlib >= 1.5.1
 Scikit-learn >= 0.14.1
 pandas >= 0.18.1
 biopython >= 1.79
+config >= 0.5.1
