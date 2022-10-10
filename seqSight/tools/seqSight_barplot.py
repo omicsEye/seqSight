@@ -20,7 +20,6 @@ import matplotlib.pyplot as plt
 
 GENE_TABLE_DELIMITER = "\t"
 
-
 def parse_arguments(args):
     """
     Parse the arguments from the user
@@ -74,8 +73,11 @@ def main():
     print(output_dir)
 
     df = pd.read_csv(input_dir1, sep="\t", header=0, index_col=0)
+    print(df)
 
-    df = df.sort_values(by=["Human", "Viral", "Bacterial", "Fungi", "Archaea"], ascending=False)
+    df = df.sort_values(by=["Unidentified", "Viral", "Bacterial", "Fungi", "Archaea"], ascending=False)
+    #TODO df = df.sort_values(by=["Human", "Viral", "Bacterial", "Fungi", "Archaea"], ascending=False)
+
 
     df1 = df.div(df.sum(axis=1), axis=0)
 
@@ -90,7 +92,8 @@ def main():
     # print(lst_Bacterial)
 
     lst_Human = []
-    for i in df1["Human"]:
+    # TODO -  for i in df1["Human"]:
+    for i in df1["Unidentified"]:
         lst_Human.append(i)
     # print(lst_Human)
 
@@ -142,7 +145,7 @@ def main():
             width=bar_width,
             # with pre_score on the bottom
             # with the label mid score
-            label='Human',  # hypothetical unannotated',
+            label='Unidentified',  # hypothetical unannotated',
             # with alpha 0.5
             alpha=0.99,
             # with color
