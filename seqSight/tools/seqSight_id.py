@@ -12,8 +12,8 @@ import re
 import sys
 import argparse
 
-from seqSight.tools.seqSightReport import seqSightReport
-from seqSight.tools.utils import samUtils, seqSightUtils, seqParse
+from ..tools.seqSightReport import seqSightReport
+from ..tools.utils import samUtils, seqSightUtils, seqParse
 from time import time
 
 def parse_arguments(args):
@@ -24,8 +24,11 @@ def parse_arguments(args):
         description="seqSight ID Module \n",
         formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument(
-        "--ali_file",
-        default="")
+        "--ali-format",
+        dest="ali_format",
+        default="sam",
+        required=True,
+        help={})
     parser.add_argument(
         "--verbose",
         default="False",
@@ -38,12 +41,9 @@ def parse_arguments(args):
         "--exp_tag",
         default="",
         required=False)
+
     parser.add_argument(
-        "--ali_format",
-        default="sam",
-        required=False)
-    parser.add_argument(
-        "--outdir",
+        "-o", "--output",
         default="",
         required=False)
     parser.add_argument(
@@ -77,23 +77,6 @@ def parse_arguments(args):
 
     return parser.parse_args()
 
-
-args = parse_arguments(sys.argv)
-
-class seqSightIdOptions:
-    out_matrix = args.out_matrix
-    verbose = args.verbose
-    scoreCutoff = args.score_cutoff
-    expTag = args.exp_tag
-    ali_format = args.ali_format
-    ali_file = args.ali_file
-    outdir = args.outdir
-    emEpsilon = float(args.emEpsilon)
-    maxIter = int(args.maxIter)
-    upalign = not (args.noalign)
-    piPrior = float(args.piPrior)
-    thetaPrior = float(args.thetaPrior)
-    noCutOff = args.noCutOff
 
 # ===========================================================
 def conv_align2GRmat(aliDfile, pScoreCutoff, aliFormat):
@@ -197,21 +180,9 @@ def conv_align2GRmat(aliDfile, pScoreCutoff, aliFormat):
 # ===========================================================
 # Entry function to seqSightID
 # Does the reassignment and generates a tsv file report
-def seqSight_reassign(seqSightIdOptions):
-    print("here2")
-    out_matrix = seqSightIdOptions.out_matrix
-    verbose = seqSightIdOptions.verbose
-    scoreCutoff = seqSightIdOptions.scoreCutoff
-    expTag = seqSightIdOptions.expTag
-    ali_format = seqSightIdOptions.ali_format
-    ali_file = seqSightIdOptions.ali_file
-    outdir = seqSightIdOptions.outdir
-    emEpsilon = seqSightIdOptions.emEpsilon
-    maxIter = seqSightIdOptions.maxIter
-    upalign = seqSightIdOptions.upalign
-    piPrior = seqSightIdOptions.piPrior
-    thetaPrior = seqSightIdOptions.thetaPrior
-    noCutOff = seqSightIdOptions.noCutOff
+def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, output, maxIter,
+                      upalign, piPrior, thetaPrior, noCutOff, verbose, emEpsilon=0.01):
+    print("You are in seqSight_reassign")
 
     if float(os.stat(ali_file).st_size) < 1.0:
         print('the alignment file [%s] is empty.' % ali_file)
@@ -245,7 +216,7 @@ def seqSight_reassign(seqSightIdOptions):
         if verbose:
             print("writing initial alignment ...")
         # print("genomes",genomes)
-        out_initial_align_matrix(genomes, reads, U, NU, expTag, ali_file, outdir)
+        out_initial_align_matrix(genomes, reads, U, NU, expTag, ali_file, output)
 
     (bestHitInitialReads, bestHitInitial, level1Initial, level2Initial) = \
         seqSightReport.computeBestHit(U, NU, genomes, reads)
@@ -256,7 +227,7 @@ def seqSight_reassign(seqSightIdOptions):
     tmp = sorted(tmp, reverse=True)  # similar to sort row
 
     if out_matrix:
-        initialGuess = outdir + os.sep + expTag + '-initGuess.txt'
+        initialGuess = output + os.sep + expTag + '-initGuess.txt'
         oFp = open(initialGuess, 'w')
         csv_writer = csv.writer(oFp, delimiter='\t')
         csv_writer.writerows(tmp)
@@ -268,7 +239,7 @@ def seqSight_reassign(seqSightIdOptions):
         seqSightReport.computeBestHit(U, NU, genomes, reads)
 
     if out_matrix:
-        finalGuess = outdir + os.sep + expTag + '-finGuess.txt'
+        finalGuess = output + os.sep + expTag + '-finGuess.txt'
         oFp = open(finalGuess, 'w')
         tmp = zip(pi, genomes)
         tmp = sorted(tmp, reverse=True)
@@ -276,7 +247,7 @@ def seqSight_reassign(seqSightIdOptions):
         csv_writer.writerows(tmp)
         oFp.close()
 
-    finalReport = outdir + os.sep + expTag + '-' + ali_format + '-report.tsv'
+    finalReport = output + os.sep + expTag + '-' + ali_format + '-report.tsv'
     header = ['Genome', 'Final Guess', 'Final Best Hit', 'Final Best Hit Read Numbers', \
               'Final High Confidence Hits', 'Final Low Confidence Hits', 'Initial Guess', \
               'Initial Best Hit', 'Initial Best Hit Read Numbers', \
@@ -288,7 +259,7 @@ def seqSight_reassign(seqSightIdOptions):
 
     reAlignfile = ali_file
     if upalign:
-        reAlignfile = rewrite_align(U, NU, ali_file, scoreCutoff, aliFormat, outdir)
+        reAlignfile = rewrite_align(U, NU, ali_file, scoreCutoff, aliFormat, output)
 
     return (finalReport, x2, x3, x4, x5, x1, x6, x7, x8, x9, x10, x11, reAlignfile)
 
@@ -395,15 +366,15 @@ def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior
     return initPi, pi, theta, NU
 
 
-def out_initial_align_matrix(ref, read, U, NU, expTag, ali_file, outdir):
+def out_initial_align_matrix(ref, read, U, NU, expTag, ali_file, output):
     print("ref",ref)
-    genomeId = outdir + os.sep + expTag + '-genomeId.txt'
+    genomeId = output + os.sep + expTag + '-genomeId.txt'
     oFp = open(genomeId, 'w')
     csv_writer = csv.writer(oFp, delimiter='\n')
     csv_writer.writerows([ref])
     oFp.close()
 
-    readId = outdir + os.sep + expTag + '-readId.txt'
+    readId = output + os.sep + expTag + '-readId.txt'
     oFp = open(readId, 'w')
     print("read",read)
     csv_writer = csv.writer(oFp, delimiter='\n')
@@ -413,10 +384,10 @@ def out_initial_align_matrix(ref, read, U, NU, expTag, ali_file, outdir):
 
 # ===========================================================
 # Generates the updated alignment file with the updated score
-def rewrite_align(U, NU, aliDfile, pScoreCutoff, aliFormat, outdir):
-    seqSightUtils.ensure_dir(outdir)
+def rewrite_align(U, NU, aliDfile, pScoreCutoff, aliFormat, output):
+    seqSightUtils.ensure_dir(output)
     f = os.path.basename(aliDfile)
-    reAlignfile = outdir + os.sep + 'updated_' + f
+    reAlignfile = output + os.sep + 'updated_' + f
 
     with open(reAlignfile, 'w') as of:
         with open(aliDfile, 'r') as in1:
@@ -564,7 +535,11 @@ def find_entry_score(ln, l, aliFormat, pScoreCutoff):
 
 def main():
     start = time()
-    seqSight_reassign(seqSightIdOptions)
+    args = parse_arguments(sys.argv)
+    seqSight_reassign(args.out_matrix, args.scoreCutoff, args.expTag, args.ali_format, args.output,
+                      args.emEpsilon,  args.maxIter, args.upalign, args.piPrior, args.thetaPrior,
+                      args.noCutOff, args.verbose)
+
     elapsed = time() - start
     if args.verbose:
         print("EM Elapsed Time: %d" % (elapsed))
