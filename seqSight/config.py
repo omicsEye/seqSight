@@ -90,9 +90,15 @@ resume = False
 
 user_edit_config_file = "seqSight.cfg"
 
-full_path_user_edit_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                               user_edit_config_file)
+# print(os.path.abspath(__file__))
+#
+# full_path_user_edit_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+#                                                user_edit_config_file)
+# print(full_path_user_edit_config_file)
 
+full_path_user_edit_config_file = os.path.join(os.path.dirname(os.path.abspath(".")),"seqSight/",
+                                               user_edit_config_file)
+print(full_path_user_edit_config_file)
 
 def update_user_edit_config_file_single_item(section, name, value):
     """
@@ -141,11 +147,13 @@ def update_user_edit_config_file(new_config_items):
             config.set(section, name, value)
 
     try:
+        print("start reading")
         file_handle = open(full_path_user_edit_config_file, "wt")
+        print(file_handle)
         config.write(file_handle)
         file_handle.close()
     except EnvironmentError:
-        sys.exit("Unable to write to the HUMAnN config file.")
+        sys.exit("Unable to write to the seqSight config file.")
 
 
 def read_user_edit_config_file():
@@ -154,6 +162,7 @@ def read_user_edit_config_file():
     """
 
     config = configparser.ConfigParser()
+    print("config",config)
 
     try:
         config.read(full_path_user_edit_config_file)

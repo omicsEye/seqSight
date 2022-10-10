@@ -32,7 +32,7 @@ except ImportError:
         "Operating System :: Unix",
         "Operating System :: Microsoft :: Windows",
         "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.8",
         "Topic :: Scientific/Engineering :: Bio-Informatics"
     ]
 
@@ -78,7 +78,9 @@ setup(
             'seqSight_join_tables = seqSight.tools.join_tables:main',
             'seqSight_barplot = seqSight.tools.seqSight_barplot:main',
             'seqSight_databases = seqSight.tools.seqSight_databases:main',
-            'seqSight_config = seqSight.tools.seqSight_config:main'
+            'seqSight_config = seqSight.tools.seqSight_config:main',
+            'seqSight_map = seqSight.tools.seqSight_map:main',
+            'seqSight_id = seqSight.tools.seqSight_id:main',
         ]},
     #test_suite='seqSight.tests.seqSight_test',
     zip_safe=False
