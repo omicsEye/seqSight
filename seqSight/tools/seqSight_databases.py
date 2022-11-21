@@ -23,7 +23,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+import argparse
+import os
 import sys
+
+from .. import config
+from .. import utilities
 
 # # Try to load one of the seqSight src modules to check the installation
 # try:
@@ -35,14 +40,12 @@ import sys
 # # Check the python version
 # check.python_version()
 
-import argparse
-import os
-
-from .. import config
-from .. import utilities
-
 # the locations of the current databases to download
 current_downloads = {
+    "BGC":
+        {
+            "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"
+        },
     "fungi":
         {
             "full": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
@@ -63,6 +66,7 @@ current_downloads = {
 }
 
 database_type = {
+    "BGC": "nucleotide",
     "fungi": "fungi",
     "chocophlan": "nucleotide",
     "uniref": "protein",
