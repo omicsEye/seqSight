@@ -2,9 +2,6 @@
 # Gets alignment file (currently support sam or BLAST-m8 format (.bl8)) and runs EM algorithm.
 # Outputs the pathogens rank in the sample as a report that can be opened in Excel.
 # Optionally outputs an updated alignment file (sam/bl8)
-
-# cmd: seqSight ID -alignFile five_results_"$filename"/"$filename".sam -fileType sam -outDir five_results_"$filename" -expTag "$filename"
-
 import csv
 import math
 import os
@@ -12,8 +9,8 @@ import re
 import sys
 import argparse
 
-from ..tools.seqSightReport import seqSightReport
-from ..tools.utils import samUtils, seqSightUtils, seqParse
+from seqSight.tools.seqSightReport import seqSightReport
+from seqSight.tools.utils import samUtils, seqSightUtils
 from time import time
 
 def parse_arguments(args):
@@ -41,7 +38,6 @@ def parse_arguments(args):
         "--exp_tag",
         default="",
         required=False)
-
     parser.add_argument(
         "-o", "--output",
         default="",
@@ -80,8 +76,6 @@ def parse_arguments(args):
 
 # ===========================================================
 def conv_align2GRmat(aliDfile, pScoreCutoff, aliFormat):
-    print(aliDfile, pScoreCutoff, aliFormat)
-    print("here1")
     in1 = open(aliDfile, 'r')
     U = {}
     NU = {}
@@ -286,21 +280,6 @@ def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior
     for i in U:
         pisum0[U[i][0]] += U[i][1]
 
-    # pisum0/Utotal would be the weighted proportions of unique reads assigned to each genome (weights are alignment scores)_.
-
-    # need to change the structure for U matrix
-    # notes NU weights are unnormalized
-    # pull out a weighted likelihood score
-
-    ### data structure
-    ### 3 unique reads: 2 reads to genome1 and 1 read to genome4: readnum:[genome,reascore]
-    # U = {0: 0, 1: 0, 2: 3}
-    # U = {0: [0,1], 1: [0,.5], 2: [3,1]}
-    ### non-unique reads: 3 total reads  readnum:[[genomes],[qij],[xij]]
-    # NU = {0: [[0, 2, 3], [0.4, 0.2, 0.4] , [0.33, 0.33, 0.33],.4, 1: [[0, 1], [0.6, 0.4] , [0.5,0.5]], 2: [[1, 3], [0.5, 0.5] , [0.5,0.5]]}
-    ### Genome hash
-    # genomes = {0:"ecoli", 1:"strep", 2:"anthrax", 3:"plague"}
-    # NUweights = [max(NU[i][1]) for i in NU] # weights for non-unique reads...
     NUweights = [NU[i][3] for i in NU]  # weights for non-unique reads...
     maxNUweights = 0
     NUtotal = 0
@@ -537,7 +516,7 @@ def main():
     start = time()
     args = parse_arguments(sys.argv)
     seqSight_reassign(args.out_matrix, args.scoreCutoff, args.expTag, args.ali_format, args.output,
-                      args.emEpsilon,  args.maxIter, args.upalign, args.piPrior, args.thetaPrior,
+                      args.emEpsilon, args.maxIter, args.upalign, args.piPrior, args.thetaPrior,
                       args.noCutOff, args.verbose)
 
     elapsed = time() - start

@@ -1,3 +1,4 @@
+from seqSight.tools.seqSight_id import seqSight_reassign
 import os
 import sys
 import re

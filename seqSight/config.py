@@ -96,16 +96,20 @@ user_edit_config_file = "seqSight.cfg"
 #                                                user_edit_config_file)
 # print(full_path_user_edit_config_file)
 
-full_path_user_edit_config_file = os.path.join(os.path.dirname(os.path.abspath(".")),"seqSight/",
+full_path_user_edit_config_file = os.path.join(os.path.dirname(os.path.abspath(".")),"seqSight/seqSight",
                                                user_edit_config_file)
-print(full_path_user_edit_config_file)
+print("Full path",full_path_user_edit_config_file)
 
 def update_user_edit_config_file_single_item(section, name, value):
     """
     Update the settings to the user editable config file for one item
     """
+    print("section",section)
+    print("name",name)
+    print("value",value)
 
     new_config_items = {section: {name: value}}
+    print("new_config_items",new_config_items)
 
     update_user_edit_config_file(new_config_items)
 
@@ -121,6 +125,7 @@ def update_user_edit_config_file(new_config_items):
 
     # start with the current config settings
     config_items = read_user_edit_config_file()
+    print("new_config_items1111111",new_config_items)
 
     # update with the new config items
     for section in new_config_items:
@@ -162,17 +167,24 @@ def read_user_edit_config_file():
     """
 
     config = configparser.ConfigParser()
-    print("config",config)
+    # print("config",config)
+    # print("full_path_user_edit_config_file",full_path_user_edit_config_file)
 
     try:
+        # print("full_path_user_edit_config_file",full_path_user_edit_config_file)
         config.read(full_path_user_edit_config_file)
+        # config.read("/Users/xinyangzhang/Documents/GitHub/seqSight/seqSight/seqSight.cfg")
+
     except EnvironmentError:
         sys.exit("Unable to read from the config file: " + full_path_user_edit_config_file)
 
+    # print("config.sections()",config.sections())
     # read through all of the sections
     config_items = {}
     for section in config.sections():
+        # print("section", section)
         config_list = config.items(section)
+        # print("config_list", config_list)
         config_items[section] = {}
         for name, value in config_list:
             if "file" in section or "folder" in section:
@@ -181,6 +193,7 @@ def read_user_edit_config_file():
                     value = os.path.abspath(os.path.join(os.path.dirname(full_path_user_edit_config_file), value))
             config_items[section][name] = value
 
+    # print("config_items",config_items)
     return config_items
 
 # if __name__=='__main__':
