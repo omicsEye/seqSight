@@ -1577,6 +1577,4 @@ def map_id(seq_file1, seq_file2, ref_database, out_dir, out_align, threads, inde
     cmd = f"seqSight ID -alignFile {os.path.join(out_dir, out_align + '.sam')}" \
           f" -fileType sam -outDir results_ID -expTag {tag}"
     os.system(cmd)
-
-
     return 'DONE!'
