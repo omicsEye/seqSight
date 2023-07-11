@@ -13,65 +13,6 @@ from seqSight.tools.seqSightReport import seqSightReport
 from seqSight.tools.utils import samUtils, seqSightUtils
 from time import time
 
-def parse_arguments(args):
-    """
-    Parse the arguments from the user
-    """
-    parser = argparse.ArgumentParser(
-        description="seqSight ID Module \n",
-        formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument(
-        "--ali-format",
-        dest="ali_format",
-        default="sam",
-        required=True,
-        help={})
-    parser.add_argument(
-        "--verbose",
-        default="False",
-        required=False)
-    parser.add_argument(
-        "--score_cutoff",
-        default="0.01",
-        required=False)
-    parser.add_argument(
-        "--exp_tag",
-        default="",
-        required=False)
-    parser.add_argument(
-        "-o", "--output",
-        default="",
-        required=False)
-    parser.add_argument(
-        "--emEpsilon",
-        default="0.01",
-        required=False)
-    parser.add_argument(
-        "--maxIter",
-        default="50",
-        required=False)
-    parser.add_argument(
-        "--piPrior",
-        default="0",
-        required=False)
-    parser.add_argument(
-        "--thetaPrior",
-        default="0",
-        required=False)
-    parser.add_argument(
-        "--out_matrix",
-        default="True",
-        required=False)
-    parser.add_argument(
-        "--noalign",
-        default="False",
-        required=False)
-    parser.add_argument(
-        "--noCutOff",
-        default="False",
-        required=False)
-
-    return parser.parse_args()
 
 
 # ===========================================================
@@ -511,17 +452,3 @@ def find_entry_score(ln, l, aliFormat, pScoreCutoff):
     #	skipFlag = true
     return (pScore, skipFlag)
 
-
-def main():
-    start = time()
-    args = parse_arguments(sys.argv)
-    seqSight_reassign(args.out_matrix, args.scoreCutoff, args.expTag, args.ali_format, args.output,
-                      args.emEpsilon, args.maxIter, args.upalign, args.piPrior, args.thetaPrior,
-                      args.noCutOff, args.verbose)
-
-    elapsed = time() - start
-    if args.verbose:
-        print("EM Elapsed Time: %d" % (elapsed))
-
-if __name__ == '__main__':
-    main()
