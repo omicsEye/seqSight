@@ -203,7 +203,6 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
 # This is the main EM algorithm
 # ===========================================================
 def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior):
-    print("here3")
     G = len(genomes)
 
     ### Initial values
