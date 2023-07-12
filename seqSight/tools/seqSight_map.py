@@ -104,6 +104,7 @@ def processseqSightMap(seqSightMapOptions):
         bowtie2Wrap.run_bowtie2(bowtie2Options)
         procseqSightMapOptions.targetAlignFiles.append(procseqSightMapOptions.outDir + os.sep +
                                                     bowtie2Options.outAlignFile)
+        #print("procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile",procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile)
 
     # Appending the Alignment files and Filtering
     if len(procseqSightMapOptions.targetAlignFiles) > 1:
@@ -143,6 +144,7 @@ def processseqSightMap(seqSightMapOptions):
         os.rename(appendAlignFile, outAlignFile)
     else:  # Input appendAlignFile provided by user, hence make a copy for outAlignFile
         shutil.copy(appendAlignFile, outAlignFile)
+    return outAlignFile
 
 
 # Make a copy of core seqSightMapOptions
