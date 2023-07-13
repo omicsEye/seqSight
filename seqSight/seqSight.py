@@ -141,23 +141,23 @@ def main():
         inReadFilePair1 = args.map_inputread1
         inReadFilePair2 = args.map_inputread2
 
-        if len(args.map_targetindex) > 0:
-            targetRefFiles = args.map_targetindex.split(',')
+        if len(args.map_targetref) > 0:
+            targetRefFiles = args.map_targetref.split(',')
         else:
             targetRefFiles = []
 
-        if len(args.map_filterindex) > 0:
-            filterRefFiles = args.map_filterindex.split(',')
+        if len(args.map_filterref) > 0:
+            filterRefFiles = args.map_filterref.split(',')
         else:
             filterRefFiles = []
 
-        if len(args.map_targetref) > 0:
-            targetIndexPrefixes = args.map_targetref.split(',')
+        if len(args.map_targetindex) > 0:
+            targetIndexPrefixes = args.map_targetindex.split(',')
         else:
             targetIndexPrefixes = []
 
-        if len(args.map_filterref) > 0:
-            filterIndexPrefixes = args.map_filterref.split(',')
+        if len(args.map_filterindex) > 0:
+            filterIndexPrefixes = args.map_filterindex.split(',')
         else:
             filterIndexPrefixes = []
 
