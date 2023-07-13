@@ -4,30 +4,32 @@ import os, sys, math, shutil
 seqSightdir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, seqSightdir)
 
-from seqSight.tools.bowtie2Wrap import bowtie2Wrap
 from seqSight.tools.utils import seqParse
+from seqSight.tools.bowtie2Wrap import bowtie2Wrap
+
+
 
 # ===========================================================
-class seqSightMapOptions:
-    MAX_REF_FILE_SIZE = 4.3e9
-    verbose = False
-    outDir = "."
-    indexDir = "."
-    numThreads = 8
-    outAlignFile = "outalign.sam"
-    inReadFile = ""
-    inReadFilePair1 = ""
-    inReadFilePair2 = ""
-    targetRefFiles = []
-    filterRefFiles = []
-    targetIndexPrefixes = []
-    filterIndexPrefixes = []
-    targetAlignFiles = []
-    filterAlignFiles = []
-    targetAlignParameters = None
-    filterAlignParameters = None
-    btHome = None
-    exp_tag = ""
+# class seqSightMapOptions:
+#     MAX_REF_FILE_SIZE = 4.3e9
+#     verbose = False
+#     outDir = "."
+#     indexDir = "."
+#     numThreads = 8
+#     outAlignFile = "outalign.sam"
+#     inReadFile = ""
+#     inReadFilePair1 = ""
+#     inReadFilePair2 = ""
+#     targetRefFiles = []
+#     filterRefFiles = []
+#     targetIndexPrefixes = []
+#     filterIndexPrefixes = []
+#     targetAlignFiles = []
+#     filterAlignFiles = []
+#     targetAlignParameters = None
+#     filterAlignParameters = None
+#     btHome = None
+#     exp_tag = ""
 
 
 # Main entry function to seqSightMap that does all the processing
@@ -103,8 +105,8 @@ def processseqSightMap(seqSightMapOptions):
             print("Creating bowtie2 alignment: " + bowtie2Options.outAlignFile)
         bowtie2Wrap.run_bowtie2(bowtie2Options)
         procseqSightMapOptions.targetAlignFiles.append(procseqSightMapOptions.outDir + os.sep +
-                                                    bowtie2Options.outAlignFile)
-        #print("procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile",procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile)
+                                                       bowtie2Options.outAlignFile)
+        # print("procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile",procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile)
 
     # Appending the Alignment files and Filtering
     if len(procseqSightMapOptions.targetAlignFiles) > 1:
@@ -132,7 +134,7 @@ def processseqSightMap(seqSightMapOptions):
                 print("Creating bowtie2 alignment: " + bowtie2Options.outAlignFile)
             bowtie2Wrap.run_bowtie2(bowtie2Options)
             procseqSightMapOptions.filterAlignFiles.append(procseqSightMapOptions.outDir + os.sep +
-                                                        bowtie2Options.outAlignFile)
+                                                           bowtie2Options.outAlignFile)
     # Filtering the Alignment file
     outAlignFile = procseqSightMapOptions.outDir + os.sep + procseqSightMapOptions.outAlignFile
     if seqSightMapOptions.verbose:
@@ -175,6 +177,7 @@ def copyseqSightMapOptions(seqSightMapOptions):
 # and returns a list of split file paths where each file is less than maxSize
 def splitCheck(filePath, maxSize):
     files = []
+    print("FILE PATH:", filePath)
     fileSize = os.stat(filePath).st_size
     nSplit = 1
     if (fileSize > maxSize):
@@ -243,4 +246,3 @@ def append_sam_file(outfile, appendFiles):
                     for ln in in2:
                         if ln[0] != '@':
                             out1.write(ln)
-
