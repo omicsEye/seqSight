@@ -60,7 +60,7 @@ def parse_arguments():
                         help='Filter Reference Genome Fasta Files Full Path (Comma Separated)')
     parser.add_argument('-targetAlignParams', action='store',
                         dest='map_targetalignparams', default=None, required=False,
-                        help='Target Mapping Bowtie2 Parameters (Default: Pathoscope chosen best parameters)')
+                        help='Target Mapping Bowtie2 Parameters (Default: seqSight chosen best parameters)')
     parser.add_argument('-filterAlignParams', action='store',
                         dest='map_filteralignparams', default=None, required=False,
                         help='Filter Mapping Bowtie2 Parameters (Default: Use the same Target Mapping Bowtie2 parameters)')
@@ -91,8 +91,8 @@ def parse_arguments():
     parser.add_argument('-numThreads', action='store', dest='map_numthreads', required=False,
                         default=8, type=int,
                         help='Number of threads to use by aligner (bowtie2) if different from default (8)')
-    parser.add_argument('-expTag', action='store', default='pathomap', dest='map_exp_tag',
-                        help='Experiment Tag added to files generated for identification (Default: pathomap)')
+    parser.add_argument('-expTag', action='store', default='', dest='map_exp_tag',
+                        help='Experiment Tag added to files generated for identification (Default: seqSightMap)')
 
     # parser.add_argument('--input', '-i', help="files contains the sequences", type=str, required=True)
     # parser.add_argument('--output', '-o', help="output directory to write teh results", type=str, required=True)
@@ -189,7 +189,7 @@ def main():
     """
     print(vars(testseqSightMapOptions))
     outAlignFile_test = seqSight_map.processseqSightMap(testseqSightMapOptions)
-
+    print('MAP done')
     """
      step2 - ID function;
      Input -  sam file from the MAP function;
