@@ -116,8 +116,8 @@ def parse_arguments():
                           help='EM Algorithm Theta Prior equivalent to adding n non-unique reads (Default: n=0)')
     parser.add_argument('-fileType', action='store', default='sam', dest='id_ali_format',
                           help='Alignment Format: sam/bl8/gnu-sam (Default: sam)')
-    parser.add_argument('-alignFile', action='store', dest='id_ali_file', required=True,
-                          help='Alignment file path')
+    # parser.add_argument('-alignFile', action='store', dest='id_ali_file', required=True,
+    #                       help='Alignment file path')
 
     return parser.parse_args()
 
@@ -133,7 +133,7 @@ def main():
     class testseqSightMapOptions:
         MAX_REF_FILE_SIZE = 4.3e9
         verbose = False
-        outDir = ""
+        outDir = args.map_outdir
         indexDir = args.map_indexdir
         numThreads = args.map_numthreads
         outAlignFile = args.map_outalign
@@ -205,7 +205,7 @@ def main():
                                   expTag=args.map_exp_tag,
                                   ali_format=args.id_ali_format,
                                   ali_file=outAlignFile_test,
-                                  output=args.id_ali_file,
+                                  output=args.map_outdir,
                                   maxIter=args.id_maxIter,
                                   upalign=args.id_noalign,
                                   piPrior=args.id_piPrior,
