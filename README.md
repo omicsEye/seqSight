@@ -75,8 +75,6 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 
 ## INSTALLATION ##
 
-
-
 <span style="color:#033C5A">*If you have a working conda on your system, you can safely skip to step three*</span>.
 
 * Install *conda*  
@@ -126,9 +124,7 @@ To test if seqSight is installed correctly, you may run the following command in
 
 ```
 #!cmd
-
 seqSight -h
-
 ```
 Which yields seqSight command line options.
 
