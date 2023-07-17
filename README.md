@@ -75,24 +75,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 
 ## INSTALLATION ##
 
-Linux-based and Mac OS:
-* First open a terminal 
-```
-$ sudo pip3 install seqSight
-```
-If you use `sudo` then you need to provide an admin password and the software will be installed for all users.
 
-You can also install it on the user's home directory by providing `--user` or specifying a path by providing a pATH AFTER `-t` option.
-
-Windows OS:
-* First open a Command Prompt terminal as administrator 
-then run the following command 
-
-```
-$ pip3 install seqSight
-```
-
-* You can replace `pip3` by `pip` if you have only Python 3 installed on your computer. `pip3` specifies to install `seqSight` for Python 3. 
 
 <span style="color:#033C5A">*If you have a working conda on your system, you can safely skip to step three*</span>.
 
@@ -106,14 +89,14 @@ conda --version
 ```
 it should output something like this:
 ```
-conda 4.9.2
+conda 4.12.0
 ```
 <span style="color:#fc0335">if not, you must make *conda* available to your system for further steps.</span>
 if you have problems adding conda to PATH, you can find instructions [here](https://docs.anaconda.com/anaconda/user-guide/faq/).
   
 * Third create a new conda environment (let's call it seqSight_env) with the following command:
 ```
-conda create --name seqSight_env python=3.8
+conda create --name seqSight_env python=3.9
 ```
 * Then activate your conda environment:
 ```commandline
@@ -121,8 +104,8 @@ conda activate seqSight_env
 ```
 * Finally, install *seqSight*:
 
-* You can directly install if from GitHub:
-```commandline
+* You can directly install it from GitHub:
+```command line
 python -m pip install git+https://github.com/omicsEye/seqSight
 ```
 * or before running the following line you should change your directory to the same directory that you have cloned the 
