@@ -28,8 +28,6 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 * [seqSight pipelines](#seqSight-pipelines)
    * [Taxonomic profiling](#taxonomic-profiling)
    * [Biosynthetic gene clusters profiling](Biosynthetic-gene-clusters-profiling)
-   * [Gene families profiling](#Gene-families-profiling)
-   * [Strain profiling](#Strain-profiling)
 * [Utilities](#Utilities)
    * [Join tables](#join-tables)
    * [QC Visualization](#qc-visulization-demo) 
@@ -50,11 +48,6 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * Gene Family Pathway Analysis
     * Sequence alignment & Key mutation ID
 
-4. High Resolution Phylogenomics:
-    * Identification of key species
-    * Inclusion of wider diversity of strains for key species
-    * Cladogram generation w/ annotations
-
 
 ![overall-fig](https://github.com/omicsEye/seqSight/blob/main/img/fig1_general_pipeline.png)
     
@@ -72,14 +65,14 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 
 ## INSTALLATION ##
 
-Linux based and Mac OS:
+Linux-based and Mac OS:
 * First open a terminal 
 ```
 $ sudo pip3 install seqSight
 ```
-If you use `sudo` then you need provide admin password and teh software will be installed for all users.
+If you use `sudo` then you need to provide an admin password and the software will be installed for all users.
 
-You can also install it as on user home directory by providing `--user` or specifying a path by providing a pATH AFTER `-t` option.
+You can also install it on the user's home directory by providing `--user` or specifying a path by providing a pATH AFTER `-t` option.
 
 Windows OS:
 * First open a Command Prompt terminal as administrator 
@@ -101,7 +94,7 @@ open a terminal (or command line for Windows users) and run:
 ```
 conda --version
 ```
-it should out put something like:
+it should output something like this:
 ```
 conda 4.9.2
 ```
