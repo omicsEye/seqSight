@@ -5,7 +5,7 @@
 ---
 
 # Citation: #
- Xinyang Zhang, Tyson Dawson, Keith A. Crandall, Ali Rahnavard (2022+), **seqSight: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data**, https://github.com/omicsEye/seqSight
+ Xinyang Zhang, Tyson Dawson, Keith A. Crandall, Ali Rahnavard (2023+), **seqSight: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data**, https://github.com/omicsEye/seqSight
 
 # Attention # 
 ----
