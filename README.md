@@ -65,7 +65,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 
 ## REQUIREMENTS ##
 * [Matplotlib](http://matplotlib.org/)
-* [Python 3.*](https://www.python.org/download/releases/)
+* [Python 3.9](https://www.python.org/download/releases/)
 * [Numpy 1.9.*](http://www.numpy.org/)
 * [Pandas (version >= 0.18.1)](http://pandas.pydata.org/getpandas.html)
 * [Prodigal](https://github.com/hyattpd/Prodigal)
