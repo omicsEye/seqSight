@@ -35,7 +35,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
  
 | Database | Description |
 | --- | --- |
-| `MIBiG` | MIBiG is a comprehensive database that focuses on natural product BGCs. It focuses on providing curated BGCs with associated metadata, including chemical structures, gene annotations, and experimental data. MIBiG serves as a centralized resource for **known BGCs** and aims to standardize the annotation and reporting of BGC information..|
+| `MIBiG` | MIBiG is a comprehensive database that focuses on natural product BGCs. It focuses on providing curated BGCs with associated metadata, including chemical structures, gene annotations, and experimental data. MIBiG serves as a centralized resource for **known BGCs** and aims to standardize the annotation and reporting of BGC information.|
 | `antiSMASH` | antiSMASH, in addition to being a BGC prediction tool, maintains a database of **predicted BGCs**. The database includes a broad range of BGCs, covering various secondary metabolite classes.|
 | `ClusterFinder` | The ClusterFinder database is a repository of **predicted BGCs** identified by the ClusterFinder tool. It focuses on BGCs identified in **bacterial genomes** and provides information on gene clusters, predicted products, and **associated metadata**. It aims to facilitate the exploration and analysis of BGC diversity in **bacteria**.|
 | `PRISM` | PRISM hosts a database of **predicted BGCs** identified by the PRISM tool. It includes a collection of BGCs and associated secondary metabolite annotations. The database aims to facilitate the analysis and comparison of BGCs **across different genomes**.|
