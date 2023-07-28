@@ -130,9 +130,9 @@ def main():
     args = parse_arguments()
     print(args)
 
-    class testseqSightMapOptions:
+    class seqSightMapOptions:
         MAX_REF_FILE_SIZE = 4.3e9
-        verbose = False
+        verbose = True
         outDir = args.map_outdir
         indexDir = args.map_indexdir
         numThreads = args.map_numthreads
@@ -187,8 +187,8 @@ def main():
     Output - ex1.sam;
     Tool - bowtie2;
     """
-    print(vars(testseqSightMapOptions))
-    outAlignFile_test = seqSight_map.processseqSightMap(testseqSightMapOptions)
+    print(vars(seqSightMapOptions))
+    outAlignFile_test = seqSight_map.processseqSightMap(seqSightMapOptions)
     print('MAP done')
     """
      step2 - ID function;
@@ -211,13 +211,13 @@ def main():
                                   piPrior=args.id_piPrior,
                                   thetaPrior=args.id_thetaPrior,
                                   noCutOff=args.id_nocutoff,
-                                  verbose=False,
+                                  verbose=True,
                                   emEpsilon=args.id_emEpsilon)
 
     # seqSight_id.seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, output, maxIter,
     # upalign, piPrior, thetaPrior, noCutOff, verbose, emEpsilon=0.01)
 
-    return print('done!')
+    return print('Reassign done!')
 
 
 # main()
