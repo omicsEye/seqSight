@@ -46,36 +46,36 @@ current_downloads = {
         {
             "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"
         },
-    "testTar":
+    "Fungi":
         {
-            "testTar": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
-        },
-    "fungi":
-        {
-            "full": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
+            "Fungi": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
             "DEMO": "http://huttenhower.sph.harvard.edu/humann_data/chocophlan/DEMO_chocophlan.v201901_v31.tar.gz"
         },
-    "uniref":
+    "Human":
         {
-            "uniref50_diamond": "http://huttenhower.sph.harvard.edu/humann_data/uniprot/uniref_annotated/uniref50_annotated_v201901b_full.tar.gz",
-            "uniref90_diamond": "http://huttenhower.sph.harvard.edu/humann_data/uniprot/uniref_annotated/uniref90_annotated_v201901b_full.tar.gz",
-            "uniref50_ec_filtered_diamond": "http://huttenhower.sph.harvard.edu/humann_data/uniprot/uniref_ec_filtered/uniref50_ec_filtered_201901b_subset.tar.gz",
-            "uniref90_ec_filtered_diamond": "http://huttenhower.sph.harvard.edu/humann_data/uniprot/uniref_ec_filtered/uniref90_ec_filtered_201901b_subset.tar.gz",
-            "DEMO_diamond": "http://huttenhower.sph.harvard.edu/humann_data/uniprot/uniref_annotated/uniref90_DEMO_diamond_v201901b.tar.gz"
+            "Human": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
         },
-    "utility_mapping":
+    "Viral":
         {
-            "full": "http://huttenhower.sph.harvard.edu/humann_data/full_mapping_v201901b.tar.gz"
-        }
+            "Viral": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
+        },
+    "Bacterial":
+        {
+            "Bacterial": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
+        },
+    "Archaeal":
+        {
+            "Archaeal": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
+        },
 }
 
 database_type = {
     "BGC": "bgc",
-    "testTar": "testTar",
-    "fungi": "fungi",
-    "chocophlan": "nucleotide",
-    "uniref": "protein",
-    "utility_mapping": "utility_mapping"
+    "Fungi": "Fungi",
+    "Human": "Human",
+    "Viral": "Viral",
+    "Bacterial": "Bacterial",
+    "Archaeal": "Archaeal"
 }
 
 
