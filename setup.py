@@ -18,7 +18,7 @@ try:
         "Operating System :: MacOS",
         "Operating System :: Unix",
         "Operating System :: Microsoft :: Windows",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Scientific/Engineering :: Bio-Informatics"
     ]
 except ImportError:
@@ -31,16 +31,13 @@ except ImportError:
         "Operating System :: MacOS",
         "Operating System :: Unix",
         "Operating System :: Microsoft :: Windows",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Scientific/Engineering :: Bio-Informatics"
     ]
 
 VERSION = "1.0.0"
-AUTHOR = "Tyson Dawson, Xinyang Zhang, Ali Rahnavard"
-AUTHOR_EMAIL = "gholamali.rahnavard@gmail.com, kathyzhang415@gmail.com"
-MAINTAINER = "Tyson Dawson, Xinyang Zhang, Ali Rahnavard"
-MAINTAINER_EMAIL = "tysondawson@gmail.com, kathyzhang415@gmail.com, gholamali.rahnavard@gmail.com"
+AUTHOR = "Xinyang Zhang, Ali Rahnavard"
+AUTHOR_EMAIL = "kathyzhang415@gmail.com, gholamali.rahnavard@gmail.com "
 
 # try to download the bitbucket counter file to count downloads
 # this has been added since PyPI has turned off the download stats
@@ -66,10 +63,9 @@ setup(
     description="seqSight: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data",
     long_description="seqSight: jointly profile microbial strains, genes, and biosynthetic gene clusters from metagenomics data.",
     url="http://github.com/omicsEye/seqSight",
-    keywords=['Microbiome', 'metagenomics', 'gene', "biosynthetic gene clusters", "Microbial profiling"],
+    keywords=['Microbiome', 'Metagenomics', 'Gene', "Biosynthetic Gene Clusters", "Microbial profiling"],
     platforms=['Linux', 'MacOS', "Windows"],
     classifiers=classifiers,
-    # long_description=open('readme.md').read(),
     install_requires=required,
     packages=find_packages(),
     entry_points={
@@ -78,10 +74,7 @@ setup(
             'seqSight_join_tables = seqSight.tools.join_tables:main',
             'seqSight_barplot = seqSight.tools.seqSight_barplot:main',
             'seqSight_databases = seqSight.tools.seqSight_databases:main',
-            'seqSight_config = seqSight.tools.seqSight_config:main',
-            'seqSight_map = seqSight.tools.seqSight_map:main',
-            'seqSight_id = seqSight.tools.seqSight_id:main',
+            'seqSight_config = seqSight.tools.seqSight_config:main'
         ]},
-    #test_suite='seqSight.tests.seqSight_test',
     zip_safe=False
 )
