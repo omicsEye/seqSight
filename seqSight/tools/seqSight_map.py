@@ -8,33 +8,18 @@ from seqSight.tools.utils import seqParse
 from seqSight.tools.bowtie2Wrap import bowtie2Wrap
 
 
-
-# ===========================================================
-# class seqSightMapOptions:
-#     MAX_REF_FILE_SIZE = 4.3e9
-#     verbose = False
-#     outDir = "."
-#     indexDir = "."
-#     numThreads = 8
-#     outAlignFile = "outalign.sam"
-#     inReadFile = ""
-#     inReadFilePair1 = ""
-#     inReadFilePair2 = ""
-#     targetRefFiles = []
-#     filterRefFiles = []
-#     targetIndexPrefixes = []
-#     filterIndexPrefixes = []
-#     targetAlignFiles = []
-#     filterAlignFiles = []
-#     targetAlignParameters = None
-#     filterAlignParameters = None
-#     btHome = None
-#     exp_tag = ""
-
-
 # Main entry function to seqSightMap that does all the processing
 def processseqSightMap(seqSightMapOptions):
     procseqSightMapOptions = copyseqSightMapOptions(seqSightMapOptions)
+    # Create the output folder if it not exists
+    if os.path.isdir(seqSightMapOptions.outDir):
+        if seqSightMapOptions.verbose:
+            print("The output folder" + seqSightMapOptions.outDir + "already exists.")
+    else:
+        os.mkdir(seqSightMapOptions.outDir)
+        if seqSightMapOptions.verbose:
+            print("Creating the output folder" + seqSightMapOptions.outDir)
+
     # Splitting reference files if bigger than MAX_REF_FILE_SIZE
     ptargetRefFiles = []
     for filePath in seqSightMapOptions.targetRefFiles:
@@ -106,7 +91,7 @@ def processseqSightMap(seqSightMapOptions):
         bowtie2Wrap.run_bowtie2(bowtie2Options)
         procseqSightMapOptions.targetAlignFiles.append(procseqSightMapOptions.outDir + os.sep +
                                                        bowtie2Options.outAlignFile)
-        # print("procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile",procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile)
+        print("procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile",procseqSightMapOptions.outDir + os.sep + bowtie2Options.outAlignFile)
 
     # Appending the Alignment files and Filtering
     if len(procseqSightMapOptions.targetAlignFiles) > 1:
