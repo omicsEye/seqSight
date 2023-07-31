@@ -3,7 +3,6 @@
 import os, sys
 
 from seqSight.tools.utils import samUtils
-from seqSight.seqSight import main
 
 
 # ===========================================================
