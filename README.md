@@ -59,7 +59,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
     * Sequence alignment & Key mutation ID
 
 
-![overall-fig](https://github.com/omicsEye/seqSight/blob/main/img/fig1_general_pipeline.png)
+
     
 # seqSight #
 
