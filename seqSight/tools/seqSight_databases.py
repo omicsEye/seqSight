@@ -38,33 +38,38 @@ current_downloads = {
         },
     "fungi":
         {
-            "fungi": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
+            "fungiFasta": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
+            "fungiBowtie2Index": "",
         },
     "Human":
         {
-            "Human": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
+            "GRCh38": "",
+            "T2T-CHM13": ""
         },
-    "Viral":
+    "viral":
         {
-            "Viral": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
+            "viralFasta": "",
+            "viralBowtie2Index" : ""
         },
     "Bacterial":
         {
-            "Bacterial": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
+            "BacterialFasta": "",
+            "BacterialBowtie2Index": ""
         },
-    "Archaeal":
+    "archaeal":
         {
-            "Archaeal": "https://gwu.box.com/shared/static/l4wcu0z3nz4lsd222i64ii2miam2ordb.gz"
+            "archaealFasta": "https://gwu.box.com/shared/static/l4wcu0z3nz4lsd222i64ii2miam2ordb.gz",
+            "archaealBowtie2Index": "https://gwu.box.com/shared/static/afj4s72zi0hbjgbt1ga6j35icf93nypp.gz"
         },
 }
 
 database_type = {
-    "BGC": "MIBiG",
+    "bgc": "MIBiG",
     "fungi": "fungi",
-    "Human": "Human",
-    "Viral": "Viral",
-    "Bacterial": "Bacterial",
-    "Archaeal": "Archaeal"
+    "human": "human",
+    "viral": "viral",
+    "bacterial": "bacterial",
+    "archaeal": "archaeal"
 }
 
 
