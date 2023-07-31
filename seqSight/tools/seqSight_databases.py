@@ -30,16 +30,6 @@ import sys
 from .. import config
 from .. import utilities
 
-# # Try to load one of the seqSight src modules to check the installation
-# try:
-#     from .. import check
-# except ImportError:
-#     sys.exit("CRITICAL ERROR: Unable to find the seqSight python package." +
-#              " Please check your install.")
-#
-# # Check the python version
-# check.python_version()
-
 # the locations of the current databases to download
 current_downloads = {
     "BGC":
@@ -49,7 +39,6 @@ current_downloads = {
     "Fungi":
         {
             "Fungi": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
-            "DEMO": "http://huttenhower.sph.harvard.edu/humann_data/chocophlan/DEMO_chocophlan.v201901_v31.tar.gz"
         },
     "Human":
         {
@@ -70,7 +59,7 @@ current_downloads = {
 }
 
 database_type = {
-    "BGC": "bgc",
+    "BGC": "MIBiG",
     "Fungi": "Fungi",
     "Human": "Human",
     "Viral": "Viral",
