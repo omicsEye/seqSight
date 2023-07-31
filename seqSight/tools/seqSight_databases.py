@@ -36,9 +36,9 @@ current_downloads = {
         {
             "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"
         },
-    "Fungi":
+    "fungi":
         {
-            "Fungi": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
+            "fungi": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
         },
     "Human":
         {
@@ -54,13 +54,13 @@ current_downloads = {
         },
     "Archaeal":
         {
-            "Archaeal": "https://github.com/omicsEye/seqSight/blob/main/data/testTar.tar.gz?raw=true"
+            "Archaeal": "https://gwu.box.com/shared/static/l4wcu0z3nz4lsd222i64ii2miam2ordb.gz"
         },
 }
 
 database_type = {
     "BGC": "MIBiG",
-    "Fungi": "Fungi",
+    "fungi": "fungi",
     "Human": "Human",
     "Viral": "Viral",
     "Bacterial": "Bacterial",
