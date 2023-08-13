@@ -32,33 +32,33 @@ from .. import utilities
 
 # the locations of the current databases to download
 current_downloads = {
-    "BGC":
+    "bgc":
         {
             "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"
         },
     "fungi":
         {
-            "fungiFasta": "https://gwu.box.com/shared/static/oaah1cv3ujdrirc9b3yoovqok6k8nyw9.gz",
-            "fungiBowtie2Index": "",
+            "fungiFasta": "",#todo
+            "fungiBowtie2Index": "",#todo
         },
-    "Human":
+    "human":
         {
-            "GRCh38": "",
-            "T2T-CHM13": ""
+            "GRCh38Bt2": "https://gwu.box.com/shared/static/ccca55m075tj1bmpu00jrdm6m02b2jfv.gz",#todo
+            "T2T-CHM13Bt2": ""#todo
         },
     "viral":
         {
-            "viralFasta": "",
-            "viralBowtie2Index" : ""
+            "viralFasta": "", #todo
+            "viralBowtie2Index" : "" #todo
         },
-    "Bacterial":
+    "bacterial":
         {
-            "BacterialFasta": "",
-            "BacterialBowtie2Index": ""
+            "bacterialFasta": "",#todo
+            "bacterialBowtie2Index": ""#todo
         },
     "archaeal":
         {
-            "archaealFasta": "https://gwu.box.com/shared/static/l4wcu0z3nz4lsd222i64ii2miam2ordb.gz",
+            "archaealFasta": "",#todo
             "archaealBowtie2Index": "https://gwu.box.com/shared/static/afj4s72zi0hbjgbt1ga6j35icf93nypp.gz"
         },
 }
