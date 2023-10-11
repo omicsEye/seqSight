@@ -239,3 +239,5 @@ merge_seqSight_tables.py [path_of_folder_contains_outputs] > output/merged_abund
 4. The stacked bar plot show the composition distribution and their corresponding reads.
 5. The final look could be liked the following:
 ![stacked plot](https://github.com/omicsEye/seqSight/blob/main/Notebooks/stackedplot.png)
+
+![stacked plot](https://github.com/omicsEye/seqSight/blob/main/Notebooks/BGCAbundance.png)
