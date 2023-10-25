@@ -34,7 +34,7 @@ from .. import utilities
 current_downloads = {
     "bgc":
         {
-            "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"#todo
+            "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"
         },
     "fungi":
         {
@@ -42,7 +42,7 @@ current_downloads = {
         },
     "human":
         {
-            "GRCh38Bt2": "https://gwu.box.com/shared/static/ccca55m075tj1bmpu00jrdm6m02b2jfv.gz"#todo
+            "GRCh38Bt2": "https://gwu.box.com/shared/static/b0uu1sqyk1y6rb4wzllssxv1vox84205.gz"
         },
     "viral":
         {
