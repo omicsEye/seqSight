@@ -65,9 +65,9 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 * [Pandas (version >= 0.18.1)](http://pandas.pydata.org/getpandas.html)
 * [bowtie2 v2.4.4](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 * [biopython 1.79](https://biopython.org/)
-* [Scipy (version >= 0.17.0)] (https://scipy.org/)
-* [Cython (version >= 0.29.2)] (https://cython.org/)
-* [Scikit-learn (version >= 0.14.1)] (https://scikit-learn.org/stable/)
+* [Scipy (version >= 0.17.0)](https://scipy.org/)
+* [Cython (version >= 0.29.2)](https://cython.org/)
+* [Scikit-learn (version >= 0.14.1)](https://scikit-learn.org/stable/)
 
 ## INSTALLATION ##
 
