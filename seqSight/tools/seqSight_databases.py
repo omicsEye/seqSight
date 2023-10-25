@@ -133,6 +133,33 @@ def download_database(database, build, location, database_location):
     return install_location
 
 
+def parse_arguments(args):
+    """
+    Parse the arguments from the user
+    """
+    parser = argparse.ArgumentParser(
+        description="seqSight Databases\n",
+        formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument(
+        "--available",
+        action="store_true",
+        help="Print the available databases\n")
+    parser.add_argument(
+        "--download",
+        nargs=3,
+        metavar=("<database>", "<build>", "<install_location>"),
+        help="Download the selected database to the install location\n")
+    parser.add_argument(
+        "--update-config",
+        default="yes",
+        choices=["yes", "no"],
+        help="Update the config file to set the new database as the default [DEFAULT: yes]\n")
+    parser.add_argument(
+        "--database-location",
+        help="Location (local or remote) to pull the database")
+
+    return parser.parse_args()
+
 
 def main():
     # Parse arguments from the command line
