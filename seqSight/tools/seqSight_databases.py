@@ -34,7 +34,7 @@ from .. import utilities
 current_downloads = {
     "bgc":
         {
-            "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"
+            "MIBiG": "https://gwu.box.com/shared/static/s9g2v012kyy97p50juy4boybeojrfhda.gz"#todo
         },
     "fungi":
         {
@@ -42,12 +42,11 @@ current_downloads = {
         },
     "human":
         {
-            "GRCh38Bt2": "https://gwu.box.com/shared/static/ccca55m075tj1bmpu00jrdm6m02b2jfv.gz",#todo
-            "T2T-CHM13Bt2": ""#todo
+            "GRCh38Bt2": "https://gwu.box.com/shared/static/ccca55m075tj1bmpu00jrdm6m02b2jfv.gz"#todo
         },
     "viral":
         {
-            "viralBowtie2Index" : "" #todo
+            "viralBowtie2Index": "https://gwu.box.com/shared/static/pho5jc7nwbr00hxqboxew7zrug4p6bvf.gz"
         },
     "bacterial":
         {
@@ -100,16 +99,16 @@ def download_database(database, build, location, database_location):
 
             if database_location:
                 check_user_database(current_downloads[database][build], database_location)
-                print("download_tar_and_extract_with_progress_messages11",database_location)
-                print("downloaded_file",downloaded_file)
-                print("install_location",install_location)
+                print("download_tar_and_extract_with_progress_messages11", database_location)
+                print("downloaded_file", downloaded_file)
+                print("install_location", install_location)
                 utilities.download_tar_and_extract_with_progress_messages(database_location,
                                                                           downloaded_file, install_location)
             else:
-                print("download_tar_and_extract_with_progress_messages22",database_location)
-                print("current_downloads22",current_downloads[database][build])
-                print("downloaded_file22",downloaded_file)
-                print("install_location22",install_location)
+                print("download_tar_and_extract_with_progress_messages22", database_location)
+                print("current_downloads22", current_downloads[database][build])
+                print("downloaded_file22", downloaded_file)
+                print("install_location22", install_location)
                 utilities.download_tar_and_extract_with_progress_messages(current_downloads[database][build],
                                                                           downloaded_file, install_location)
 
