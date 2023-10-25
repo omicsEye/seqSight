@@ -68,10 +68,11 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 * [Python 3.9](https://www.python.org/download/releases/)
 * [Numpy 1.9.*](http://www.numpy.org/)
 * [Pandas (version >= 0.18.1)](http://pandas.pydata.org/getpandas.html)
-* [Prodigal](https://github.com/hyattpd/Prodigal)
 * [bowtie2 v2.4.4](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 * [biopython 1.79](https://biopython.org/)
-* [diamond 2.0.14](https://github.com/bbuchfink/diamond)
+* [Scipy (version >= 0.17.0)] (https://scipy.org/)
+* [Cython (version >= 0.29.2)] (https://cython.org/)
+* [Scikit-learn (version >= 0.14.1)] (https://scikit-learn.org/stable/)
 
 ## INSTALLATION ##
 
