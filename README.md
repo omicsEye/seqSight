@@ -50,16 +50,11 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 
 2. Mapping database
     * Taxonomic Reference Genomes
-    * Gene Families
     * Biosynthesis gene clusters
 
 3. Downstream Analysis:
-    * Downstream Analysis
     * Gene Family Pathway Analysis
-    * Sequence alignment & Key mutation ID
-
-
-
+ 
     
 # seqSight #
 
