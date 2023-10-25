@@ -221,8 +221,14 @@ usage: seqSight [-h]
 ![tax3](https://github.com/omicsEye/seqSight/blob/main/img/taxProfile3.png)
 
 ## Utilities ##
+seqSight's repository features utility scripts to help in the manipulation of sample output and its visualization. These scripts can be found under the utils folder in the seqSight directory.
+### Merge Tables ###
+The script merge_seqSight_tables.py allows to combine seqSight output from several samples to be merged into one table Bugs (rows) vs Samples (columns) with the table enlisting the relative normalized abundances per sample per bug.
 
-### Join tables ###
+```
+merge_seqSight_tables.py [path_of_folder_contains_outputs] > output/merged_abundance_table.txt
+```
+
 
 
 
@@ -233,3 +239,5 @@ usage: seqSight [-h]
 4. The stacked bar plot show the composition distribution and their corresponding reads.
 5. The final look could be liked the following:
 ![stacked plot](https://github.com/omicsEye/seqSight/blob/main/Notebooks/stackedplot.png)
+
+![stacked plot](https://github.com/omicsEye/seqSight/blob/main/Notebooks/BGCAbundance.png)
