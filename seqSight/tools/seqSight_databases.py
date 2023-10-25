@@ -163,6 +163,46 @@ def parse_arguments(args):
 
 
 
+def main():
+    # Parse arguments from the command line
+    args = parse_arguments(sys.argv)
+
+    if args.download:
+        # download the database
+        database = args.download[0]
+        build = args.download[1]
+        location = os.path.abspath(args.download[2])
+
+        print("database", database)
+        print("build", build)
+        print("location", location)
+
+        # create the installation location if it does not already exist
+        print("os.path.isdir(location)", os.path.isdir(location))
+        if not os.path.isdir(location):
+            try:
+                print("Creating directory to install database: " + location)
+                os.mkdir(location)
+            except EnvironmentError:
+                sys.exit("CRITICAL ERROR: Unable to create directory: " + location)
+
+        install_location = download_database(database, build, location, args.database_location)
+        print("install_location", install_location)
+        if args.update_config == "yes":
+            # update the config file with the installed location
+            print("database_type[database]", database_type[database])
+            config.update_user_edit_config_file_single_item("database_folders",
+                                                            database_type[database], install_location)
+
+    if args.available or not args.download:
+        # print the available databases
+        current_config_items = config.read_user_edit_config_file()
+        print("seqSight Databases ( database : build = location )")
+        for database in current_downloads:
+            for build, location in current_downloads[database].items():
+                print(database + " : " + build + " = " + location)
+
+
 
 if __name__ == "__main__":
     main()
