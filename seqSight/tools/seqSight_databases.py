@@ -38,8 +38,7 @@ current_downloads = {
         },
     "fungi":
         {
-            "fungiFasta": "",#todo
-            "fungiBowtie2Index": "",#todo
+            "fungiBowtie2Index": ""#todo
         },
     "human":
         {
@@ -48,23 +47,20 @@ current_downloads = {
         },
     "viral":
         {
-            "viralFasta": "", #todo
             "viralBowtie2Index" : "" #todo
         },
     "bacterial":
         {
-            "bacterialFasta": "",#todo
             "bacterialBowtie2Index": ""#todo
         },
     "archaeal":
         {
-            "archaealFasta": "",#todo
             "archaealBowtie2Index": "https://gwu.box.com/shared/static/afj4s72zi0hbjgbt1ga6j35icf93nypp.gz"
         },
 }
 
 database_type = {
-    "bgc": "MIBiG",
+    "bgc": "bgc",
     "fungi": "fungi",
     "human": "human",
     "viral": "viral",
