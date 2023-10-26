@@ -50,7 +50,7 @@ current_downloads = {
         },
     "bacterial":
         {
-            "bacterialBowtie2Index": ""#todo
+            "bacterialBowtie2Index": "https://gwu.box.com/shared/static/ibzpdz9fac2twxssquunp99rcld9aaf5.gz"
         },
     "archaeal":
         {
