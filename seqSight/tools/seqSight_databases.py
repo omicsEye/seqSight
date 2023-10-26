@@ -38,7 +38,7 @@ current_downloads = {
         },
     "fungi":
         {
-            "fungiBowtie2Index": ""#todo
+            "fungiBowtie2Index": "https://gwu.box.com/shared/static/mm6oxn4ovfcc5rhaly27lxh40c3filro.gz"
         },
     "human":
         {
