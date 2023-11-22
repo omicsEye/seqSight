@@ -132,8 +132,6 @@ $ seqSight -h
 usage: seqSight [-h] [-U MAP_INPUTREAD] [-1 MAP_INPUTREAD1] [-2 MAP_INPUTREAD2] [-targetRefFiles MAP_TARGETREF] [-filterRefFiles MAP_FILTERREF]
                 [-targetAlignParams MAP_TARGETALIGNPARAMS] [-filterAlignParams MAP_FILTERALIGNPARAMS] [-outDir MAP_OUTDIR] [-outAlign MAP_OUTALIGN] [-indexDir MAP_INDEXDIR]
                 [-targetIndexPrefixes MAP_TARGETINDEX] [-filterIndexPrefixes MAP_FILTERINDEX] [-targetAlignFiles MAP_TARGETALIGN] [-filterAlignFiles MAP_FILTERALIGN]
-                [-btHome MAP_BTHOME] [-numThreads MAP_NUMTHREADS] [-expTag MAP_EXP_TAG] [--outMatrix] [--noUpdatedAlignFile] [--noDisplayCutoff] [-scoreCutoff ID_SCORE_CUTOFF]
-                [-emEpsilon ID_EMEPSILON] [-maxIter ID_MAXITER] [-piPrior ID_PIPRIOR] [-thetaPrior ID_THETAPRIOR] [-fileType ID_ALI_FORMAT]
 
  
 options:
@@ -162,23 +160,6 @@ options:
                         Target Alignment Files Full Path (Comma Separated)
   -filterAlignFiles MAP_FILTERALIGN
                         Filter Alignment Files Full Path (Comma Separated)
-  -btHome MAP_BTHOME    Full Path to Bowtie2 binary directory (Default: Uses bowtie2 in system path)
-  -numThreads MAP_NUMTHREADS
-                        Number of threads to use by aligner (bowtie2) if different from default (8)
-  -expTag MAP_EXP_TAG   Experiment Tag added to files generated for identification (Default: seqSightMap)
-  --outMatrix           Output alignment matrix
-  --noUpdatedAlignFile  Do not generate an updated alignment file
-  --noDisplayCutoff     Do not cutoff display of genomes, even if it is insignificant
-  -scoreCutoff ID_SCORE_CUTOFF
-                        Score Cutoff
-  -emEpsilon ID_EMEPSILON
-                        EM Algorithm Epsilon cutoff
-  -maxIter ID_MAXITER   EM Algorithm maximum iterations
-  -piPrior ID_PIPRIOR   EM Algorithm Pi Prior equivalent to adding n unique reads (Default: n=0)
-  -thetaPrior ID_THETAPRIOR
-                        EM Algorithm Theta Prior equivalent to adding n non-unique reads (Default: n=0)
-  -fileType ID_ALI_FORMAT
-                        Alignment Format: sam/bl8/gnu-sam (Default: sam)
 
 ```
 
