@@ -31,7 +31,7 @@ Please check our [omicsEye Support Forum](https://forum.omicsEye.org) for common
 * [Utilities](#Utilities)
    * [Join tables](#join-tables)
    * [QC Visualization](#qc-visulization-demo)
-* [BGC Database](#BGC-Database)
+* [BGC Databases](#BGC-Databases)
  
 | Database | Description |
 | --- | --- |
