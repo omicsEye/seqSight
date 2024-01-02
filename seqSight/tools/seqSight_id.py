@@ -56,14 +56,12 @@ def conv_align2GRmat(aliDfile, pScoreCutoff, aliFormat):
                 refId = "ti|" + mObj.group(1)
 
         (pScore, skipFlag) = find_entry_score(ln, l, aliFormat, pScoreCutoff)
-        print("pScore", pScore)
 
         if skipFlag:
             continue
         if ((maxScore == None) or (pScore > maxScore)):
             maxScore = pScore
         if ((minScore == None) or (pScore < minScore)):
-            print("yes")
             minScore = pScore
 
 
@@ -140,6 +138,11 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
         return
     (U, NU, genomes, reads) = conv_align2GRmat(ali_file, scoreCutoff, aliFormat)
 
+    print("U", U)
+    print("NU", NU)
+    print("genomes", genomes)
+    print("reads", reads)
+
     nG = len(genomes)
     nR = len(reads)
     if verbose:
@@ -155,9 +158,25 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
 
     (bestHitInitialReads, bestHitInitial, level1Initial, level2Initial) = \
         seqSightReport.computeBestHit(U, NU, genomes, reads)
+    print("bestHitInitialReads", bestHitInitialReads)
+    print("bestHitInitial", bestHitInitial)
+    print("level1Initial", level1Initial)
+    print("level2Initial", level2Initial)
+
+    print("emEpsilon", emEpsilon)
+    print("verbose", verbose)
+    print("piPrior", piPrior)
+    print("thetaPrior", thetaPrior)
+    print("maxIter", maxIter)
 
     (initPi, pi, _, NU) = seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose,
                                         piPrior, thetaPrior)
+
+    print("initPi", initPi)
+    print("pi", pi)
+    print("_", _)
+    print("NU", NU)
+
     tmp = zip(initPi, genomes)
     tmp = sorted(tmp, reverse=True)  # similar to sort row
 
@@ -205,13 +224,14 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
 def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior):
     G = len(genomes)
 
-    ### Initial values
+    # Initial values
     pi = [1. / G for _ in genomes]
     initPi = pi
     theta = [1. / G for _ in genomes]
 
     pisum0 = [0 for _ in genomes]
     Uweights = [U[i][1] for i in U]  # weights for unique reads...
+    print("Uweights", U)
     maxUweights = 0
     Utotal = 0
     if Uweights:
