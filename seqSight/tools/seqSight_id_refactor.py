@@ -9,6 +9,7 @@ import argparse
 from seqSight.tools.seqSightReport import seqSightReport
 from seqSight.tools.utils import samUtils, seqSightUtils
 
+
 def conv_align2GRmat(aliDfile, pScoreCutoff, aliFormat):
     in1 = open(aliDfile, 'r')
     U = {}
@@ -57,7 +58,6 @@ def conv_align2GRmat(aliDfile, pScoreCutoff, aliFormat):
         if ((minScore == None) or (pScore < minScore)):
             minScore = pScore
 
-
         gIdx = h_refId.get(refId, -1)
         if gIdx == -1:
             gIdx = gCnt
@@ -102,6 +102,7 @@ def conv_align2GRmat(aliDfile, pScoreCutoff, aliFormat):
 
     return U, NU, genomes, read
 
+
 def initialize_probabilities(genomes):
     """
     Initialize the probabilities for the EM algorithm.
@@ -118,7 +119,8 @@ def initialize_probabilities(genomes):
     theta = [initial_value for _ in genomes]
     return pi, theta
 
-def update_pi(pisum, total_weight, piPrior, num_genomes):
+
+def update_pi(pisum, priorWeight, total_weight, piPrior, num_genomes):
     """
     Update the pi values in the M-step of the EM algorithm.
 
@@ -131,9 +133,11 @@ def update_pi(pisum, total_weight, piPrior, num_genomes):
     Returns:
     list: Updated pi values.
     """
-    pip = piPrior * total_weight
-    pi = [(k + pip) / (total_weight + pip * num_genomes) for k in pisum]
+    pip = piPrior * priorWeight
+    # pi = [(k + pip) / (total_weight + pip * num_genomes) for k in pisum]
+    pi = [(k + pip) / (total_weight + pip * num_genomes) for k in pisum]  ## update pi
     return pi
+
 
 def update_theta(thetasum, total_weight, thetaPrior, num_genomes):
     """
@@ -152,6 +156,7 @@ def update_theta(thetasum, total_weight, thetaPrior, num_genomes):
     theta = [(k + thetap) / (total_weight + thetap * num_genomes) for k in thetasum]
     return theta
 
+
 def has_converged(current_pi, previous_pi, emEpsilon, verbose):
     """
     Check if the EM algorithm has converged based on the change in pi values.
@@ -165,6 +170,8 @@ def has_converged(current_pi, previous_pi, emEpsilon, verbose):
     Returns:
     bool: True if the algorithm has converged, False otherwise.
     """
+    print(current_pi)
+    print(previous_pi)
     # Calculate the total change in pi values between iterations
     total_change = sum(abs(current - previous) for current, previous in zip(current_pi, previous_pi))
 
@@ -195,30 +202,42 @@ def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior
     """
     # Initialize probabilities
     pi, theta = initialize_probabilities(genomes)
-    initPi = pi.copy()
+    initPi = pi
 
     # Get weights for unique and non-unique reads
     Uweights, Utotal = get_weights(U, weight_index=1)
     NUweights, NUtotal = get_weights(NU, weight_index=3)
 
     priorWeight = max(max(Uweights), max(NUweights))
-    pisum0 = calculate_pisum0(U)
+    pisum0 = calculate_pisum0(U, genomes)
+    print("pisum0", pisum0)  # [5.376234283632271e+43, 0, 0]
+    lenNU = len(NU)
+    if lenNU == 0:
+        lenNU = 1
 
     for iteration in range(maxIter):
+        pi_old = pi
         thetasum = [0 for _ in genomes]
 
         # E-Step: Update NU and calculate thetasum
         thetasum = perform_e_step(NU, pi, theta, thetasum)
 
         # M-Step: Update pi and theta
-        pi = update_pi(pisum0, Utotal + NUtotal, piPrior, len(genomes))
+        pisum = [thetasum[k] + pisum0[k] for k in range(len(thetasum))]  ### calculate tally for pi
+        pi = update_pi(pisum, priorWeight, Utotal + NUtotal, piPrior, len(genomes))
         theta = update_theta(thetasum, NUtotal, thetaPrior, len(genomes))
 
         # Check for convergence
-        if has_converged(pi, iteration, emEpsilon, verbose):
+        cutoff = 0.0
+        for k in range(len(pi)):
+            cutoff += abs(pi_old[k] - pi[k])
+        if (cutoff <= emEpsilon or lenNU == 1):
             break
+        # if has_converged(pi, iteration, emEpsilon, verbose):
+        #     break
 
     return initPi, pi, theta, NU
+
 
 def get_weights(reads_dict, weight_index):
     """
@@ -235,7 +254,8 @@ def get_weights(reads_dict, weight_index):
     total_weight = sum(weights)
     return weights, total_weight
 
-def calculate_pisum0(U):
+
+def calculate_pisum0(U, genomes):
     """
     Calculate the initial summation of pi values for unique reads.
 
@@ -245,10 +265,11 @@ def calculate_pisum0(U):
     Returns:
     list: List of summed pi values for each genome.
     """
-    pisum0 = [0 for _ in range(len(U))]
+    pisum0 = [0 for _ in genomes]
     for read in U.values():
         pisum0[read[0]] += read[1]
     return pisum0
+
 
 def perform_e_step(NU, pi, theta, thetasum):
     """
@@ -262,10 +283,13 @@ def perform_e_step(NU, pi, theta, thetasum):
     Returns:
     list: Updated thetasum after the E-step.
     """
+    print("pi", pi)
     for j in NU:  # for each non-unique read, j
         z = NU[j]
         genome_indices = z[0]  # a set of any genome mapping with j
+        print("genome_indices", genome_indices)
         pitmp = [pi[k] for k in genome_indices]  # relevant pis for the read
+        print("pitmp", pitmp)
         thetatmp = [theta[k] for k in genome_indices]  # relevant thetas for the read
         xtmp = [pitmp[k] * thetatmp[k] * z[1][k] for k in range(len(genome_indices))]
         xsum = sum(xtmp)
@@ -275,8 +299,11 @@ def perform_e_step(NU, pi, theta, thetasum):
 
         for idx, genome_idx in enumerate(genome_indices):
             thetasum[genome_idx] += xnorm[idx] * NU[j][3]  # weighted tally for theta
+    print("thetasum",thetasum) #thetasum [8.064351425448407e+43, 9.40311461505841e+19, 9.40311461505841e+19]
+
 
     return thetasum
+
 
 def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, output, maxIter,
                       upalign, piPrior, thetaPrior, noCutOff, verbose, emEpsilon=0.01):
@@ -304,6 +331,10 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
     validate_alignment_file(ali_file)
     aliFormat = determine_alignment_format(ali_format, verbose)
     U, NU, genomes, reads = conv_align2GRmat(ali_file, scoreCutoff, aliFormat)
+    print("U", U)
+    print("NU", NU)
+    print("genomes", genomes)
+    print("reads", reads)
 
     if verbose:
         print("Starting EM iteration...")
@@ -315,7 +346,12 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
 
     initPi, pi, _, NU = seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior)
 
-    report_file = seqSightReport.write_tsv_report(output, expTag, ali_format, pi, genomes, initPi, U, NU, reads, noCutOff)
+    report_file = seqSightReport.write_tsv_report(output, expTag, ali_format, pi, genomes, initPi, U, NU, reads,
+                                                  noCutOff)
+    print("initPi", initPi)
+    print("pi", pi)
+    print("_", _)
+    print("NU", NU)
 
     reAlignfile = ali_file
     if upalign:
@@ -323,9 +359,11 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
 
     return report_file, reAlignfile
 
+
 def validate_alignment_file(ali_file):
     if os.stat(ali_file).st_size < 1.0:
         raise ValueError(f'The alignment file {ali_file} is empty.')
+
 
 def determine_alignment_format(ali_format, verbose):
     format_map = {'gnu-sam': 0, 'sam': 1, 'bl8': 2}
@@ -338,7 +376,7 @@ def determine_alignment_format(ali_format, verbose):
 
 
 def initial_align_output(ref, read, U, NU, expTag, ali_file, output):
-    print("ref",ref)
+    print("ref", ref)
     genomeId = output + os.sep + expTag + '-genomeId.txt'
     oFp = open(genomeId, 'w')
     csv_writer = csv.writer(oFp, delimiter='\n')
@@ -347,7 +385,7 @@ def initial_align_output(ref, read, U, NU, expTag, ali_file, output):
 
     readId = output + os.sep + expTag + '-readId.txt'
     oFp = open(readId, 'w')
-    print("read",read)
+    print("read", read)
     csv_writer = csv.writer(oFp, delimiter='\n')
     csv_writer.writerows([read])
     oFp.close()
@@ -498,4 +536,3 @@ def find_entry_score(ln, l, aliFormat, pScoreCutoff):
     # if pScore < 1:
     #	skipFlag = true
     return (pScore, skipFlag)
-

@@ -158,16 +158,6 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
 
     (bestHitInitialReads, bestHitInitial, level1Initial, level2Initial) = \
         seqSightReport.computeBestHit(U, NU, genomes, reads)
-    print("bestHitInitialReads", bestHitInitialReads)
-    print("bestHitInitial", bestHitInitial)
-    print("level1Initial", level1Initial)
-    print("level2Initial", level2Initial)
-
-    print("emEpsilon", emEpsilon)
-    print("verbose", verbose)
-    print("piPrior", piPrior)
-    print("thetaPrior", thetaPrior)
-    print("maxIter", maxIter)
 
     (initPi, pi, _, NU) = seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose,
                                         piPrior, thetaPrior)
@@ -222,6 +212,8 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
 # This is the main EM algorithm
 # ===========================================================
 def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior):
+
+    ## initialize_probabilities
     G = len(genomes)
 
     # Initial values
@@ -229,16 +221,22 @@ def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior
     initPi = pi
     theta = [1. / G for _ in genomes]
 
+
+
     pisum0 = [0 for _ in genomes]
+
     Uweights = [U[i][1] for i in U]  # weights for unique reads...
-    print("Uweights", U)
     maxUweights = 0
     Utotal = 0
     if Uweights:
         maxUweights = max(Uweights)
         Utotal = sum(Uweights)
+
     for i in U:
         pisum0[U[i][0]] += U[i][1]
+
+    print("pisum0", pisum0) #pisum0 [5.376234283632271e+43, 0, 0]
+
 
     NUweights = [NU[i][3] for i in NU]  # weights for non-unique reads...
     maxNUweights = 0
@@ -246,7 +244,10 @@ def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior
     if NUweights:
         maxNUweights = max(NUweights)
         NUtotal = sum(NUweights)
+
     priorWeight = max(maxUweights, maxNUweights)
+
+
     lenNU = len(NU)
     if lenNU == 0:
         lenNU = 1
@@ -260,7 +261,9 @@ def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior
         for j in NU:  # for each non-uniq read, j
             z = NU[j]
             ind = z[0]  # a set of any genome mapping with j
+            print("ind",ind)
             pitmp = [pi[k] for k in ind]  ### get relevant pis for the read
+            print("pitmp", pitmp)
             thetatmp = [theta[k] for k in ind]  ### get relevant thetas for the read
             xtmp = [1. * pitmp[k] * thetatmp[k] * z[1][k] for k in range(len(ind))]  ### Calculate unormalized xs
             xsum = sum(xtmp)
@@ -274,6 +277,10 @@ def seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior
             for k in range(len(ind)):
                 # thetasum[ind[k]] += xnorm[k]   		### Keep running tally for theta
                 thetasum[ind[k]] += xnorm[k] * NU[j][3]  ### Keep weighted running tally for theta
+
+        print("thetasum",thetasum)
+        #[8.064351425448407e+43, 9.40311461505841e+19, 9.40311461505841e+19]
+
 
         # M step
         pisum = [thetasum[k] + pisum0[k] for k in range(len(thetasum))]  ### calculate tally for pi
