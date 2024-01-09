@@ -335,6 +335,8 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
     print("NU", NU)
     print("genomes", genomes)
     print("reads", reads)
+    nG = len(genomes)
+    nR = len(reads)
 
     if verbose:
         print("Starting EM iteration...")
@@ -344,10 +346,26 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
     if out_matrix:
         initial_align_output(genomes, reads, U, NU, expTag, ali_file, output)
 
+    (bestHitInitialReads, bestHitInitial, level1Initial, level2Initial) = \
+        seqSightReport.computeBestHit(U, NU, genomes, reads)
+
     initPi, pi, _, NU = seqSight_em(U, NU, genomes, maxIter, emEpsilon, verbose, piPrior, thetaPrior)
 
-    report_file = seqSightReport.write_tsv_report(output, expTag, ali_format, pi, genomes, initPi, U, NU, reads,
-                                                  noCutOff)
+    (bestHitFinalReads, bestHitFinal, level1Final, level2Final) = \
+        seqSightReport.computeBestHit(U, NU, genomes, reads)
+    # finalReport = output + os.sep + expTag + '-' + ali_format + '-report.tsv'
+    finalReport = output + os.sep + "seqSight/Test/TestData /TestRefactor" + '-' + ali_format + '-report.tsv'
+
+    print("finalReport", finalReport)
+    header = ['Genome', 'Final Guess', 'Final Best Hit', 'Final Best Hit Read Numbers', \
+              'Final High Confidence Hits', 'Final Low Confidence Hits', 'Initial Guess', \
+              'Initial Best Hit', 'Initial Best Hit Read Numbers', \
+              'Initial High Confidence Hits', 'Initial Low Confidence Hits']
+    (x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11) = seqSightReport.write_tsv_report(
+        finalReport, nR, nG, pi, genomes, initPi, bestHitInitial, bestHitInitialReads,
+        bestHitFinal, bestHitFinalReads, level1Initial, level2Initial, level1Final,
+        level2Final, header, noCutOff)
+
     print("initPi", initPi)
     print("pi", pi)
     print("_", _)
@@ -357,7 +375,10 @@ def seqSight_reassign(out_matrix, scoreCutoff, expTag, ali_format, ali_file, out
     if upalign:
         reAlignfile = rewrite_align(U, NU, ali_file, scoreCutoff, aliFormat, output)
 
-    return report_file, reAlignfile
+    print("x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11", x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11)
+
+    #return report_file, reAlignfile
+    return (finalReport, x2, x3, x4, x5, x1, x6, x7, x8, x9, x10, x11, reAlignfile)
 
 
 def validate_alignment_file(ali_file):
