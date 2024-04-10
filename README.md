@@ -178,6 +178,8 @@ $ seqSight -h
 usage: seqSight [-h] 
 
 ```
+
+
 # seqSight piplines # 
 ## Taxonomic profiling ##
 1. Bayesian Reassignment
