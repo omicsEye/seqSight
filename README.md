@@ -119,7 +119,6 @@ python -m pip install .
 To test if seqSight is installed correctly, you may run the following command in the terminal:
 
 ```
-#!cmd
 seqSight -h
 ```
 Which yields seqSight command line options.
@@ -179,6 +178,8 @@ $ seqSight -h
 usage: seqSight [-h] 
 
 ```
+
+
 # seqSight piplines # 
 ## Taxonomic profiling ##
 1. Bayesian Reassignment
